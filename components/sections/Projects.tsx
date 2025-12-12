@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, memo } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
@@ -136,7 +136,7 @@ function ProjectModal({
   );
 }
 
-export function Projects() {
+export const Projects = memo(function Projects() {
   const { t } = useLanguage();
 
   const projects = useMemo(
@@ -167,13 +167,13 @@ export function Projects() {
         <div className="max-w-7xl mx-auto overflow-visible">
           <motion.div
             className="mb-16 overflow-visible"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0.3, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             data-framer-motion
           >
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-[1.2] max-w-4xl overflow-visible pr-4">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.2] max-w-4xl overflow-visible pr-4">
               {t.projects.title}
               <br />
               <span
@@ -200,18 +200,18 @@ export function Projects() {
               <motion.div
                 key={index}
                 className="group border-2 border-gray-200 rounded-xl overflow-hidden bg-white transition-all duration-300"
-                initial={{ opacity: 0.3, y: 5 }}
+                initial={{ opacity: 0.4, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "200px" }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{
-                  duration: 0.3,
-                  delay: index * 0.05,
+                  duration: 0.5,
+                  delay: index * 0.1,
                   ease: "easeOut",
                 }}
                 whileHover={{
-                  borderColor: "rgb(59, 130, 246)",
+                  borderColor: "#006F9D",
                   boxShadow:
-                    "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)",
+                    "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 111, 157, 0.1)",
                 }}
                 style={{
                   backfaceVisibility: "hidden",
@@ -229,13 +229,15 @@ export function Projects() {
                       alt={project.name}
                       fill
                       className="object-cover"
+                      loading="lazy"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
                     />
                   </motion.div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
 
                   <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
                     <div className="flex items-center gap-2">
-                      <Euro className="w-4 h-4 text-blue-600" />
+                      <Euro className="w-4 h-4 text-[#006F9D]" />
                       <span className="text-lg font-semibold text-gray-900">
                         {project.investment}
                       </span>
@@ -263,7 +265,7 @@ export function Projects() {
                           key={idx}
                           className="flex items-start gap-3 text-gray-700 font-light text-sm"
                         >
-                          <span className="text-blue-600 mt-1.5">•</span>
+                          <span className="text-[#006F9D] mt-1.5">•</span>
                           <span>{feature}</span>
                         </li>
                       ))}
@@ -281,4 +283,4 @@ export function Projects() {
       </div>
     </section>
   );
-}
+});

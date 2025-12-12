@@ -20,6 +20,7 @@ export interface Translations {
   };
   team: {
     title: string;
+    titleHighlight: string;
     description: string;
     members: {
       antonio: {
@@ -276,6 +277,7 @@ export const translations: Record<Language, Translations> = {
     },
     team: {
       title: "Qui sommes-nous",
+      titleHighlight: "L'Équipe",
       description:
         "Nous sommes une équipe multidisciplinaire avec une vaste expérience en gestion sportive, hôtellerie et création de projets familiaux.",
       members: {
@@ -607,6 +609,7 @@ export const translations: Record<Language, Translations> = {
     },
     team: {
       title: "Who We Are",
+      titleHighlight: "The Team",
       description:
         "We are a multidisciplinary team with extensive experience in sports management, hospitality and creating family projects.",
       members: {
@@ -938,6 +941,7 @@ export const translations: Record<Language, Translations> = {
     },
     team: {
       title: "Quiénes somos",
+      titleHighlight: "El Equipo",
       description:
         "Somos un equipo multidisciplinario con amplia experiencia en gestión deportiva, hostelería y creación de proyectos familiares.",
       members: {

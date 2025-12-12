@@ -1,11 +1,11 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, memo } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 
-export function Investment() {
+export const Investment = memo(function Investment() {
   const { t } = useLanguage();
 
   const investmentPoints = useMemo(
@@ -38,41 +38,32 @@ export function Investment() {
     [t]
   );
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-
   return (
     <section
       ref={containerRef}
       id="inversion"
       className="relative py-30 overflow-hidden bg-white"
     >
-      <motion.div className="absolute inset-0 z-0" style={{ y }}>
+      <div className="absolute inset-0 z-0">
         <Image
           src="/images/6.jpg"
           alt="Inversión y Oportunidad"
           fill
           className="object-cover"
+          loading="lazy"
+          sizes="100vw"
         />
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]"></div>
-      </motion.div>
+        <div className="absolute inset-0 bg-black/40"></div>
+      </div>
 
-      <motion.div
-        className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
-        style={{ opacity }}
-      >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto overflow-visible">
           <motion.div
             className="mb-16 overflow-visible"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0.3, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             data-framer-motion
           >
             <div className="flex items-start gap-8">
@@ -86,7 +77,7 @@ export function Investment() {
                 05
               </motion.div>
               <div className="flex-1 pt-4 overflow-visible">
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 leading-[1.2] overflow-visible pr-4">
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.2] overflow-visible pr-4">
                   {t.investment.title}
                   <br />
                   <span
@@ -115,12 +106,12 @@ export function Investment() {
               <motion.div
                 key={index}
                 className="border-2 border-white/30 rounded-xl p-6 bg-white/20 backdrop-blur-md transition-all duration-300 group"
-                initial={{ opacity: 0.3, y: 5 }}
+                initial={{ opacity: 0.4, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "200px" }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{
-                  duration: 0.3,
-                  delay: index * 0.04,
+                  duration: 0.5,
+                  delay: index * 0.08,
                   ease: "easeOut",
                 }}
                 whileHover={{
@@ -135,7 +126,7 @@ export function Investment() {
                 data-framer-motion
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-emerald-500 flex items-center justify-center text-white font-bold text-lg">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-[#006F9D] to-[#FF7E3B] flex items-center justify-center text-white font-bold text-lg">
                     {index + 1}
                   </div>
                   <div className="flex-1 space-y-3">
@@ -151,7 +142,7 @@ export function Investment() {
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
-}
+});

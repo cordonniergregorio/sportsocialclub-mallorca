@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 
 export function Footer() {
@@ -8,12 +9,18 @@ export function Footer() {
 
   return (
     <footer className="bg-white border-t border-gray-200">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
-            <h3 className="text-base font-light text-gray-900 mb-4">
-              {t.clubName}
-            </h3>
+            <Link href="/" className="inline-block mb-4">
+              <Image
+                src="/images/logoPrimary.png"
+                alt={t.clubName}
+                width={200}
+                height={60}
+                className=" w-auto object-contain"
+              />
+            </Link>
             <p className="text-sm text-gray-500 font-light">
               {t.footer.description}
             </p>
