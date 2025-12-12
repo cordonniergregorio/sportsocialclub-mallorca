@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  ReactNode,
-} from "react";
+import { createContext, useContext, useState, useMemo, ReactNode } from "react";
 import { Language, translations } from "@/lib/translations";
 
 interface LanguageContextType {
@@ -20,17 +14,17 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
 );
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
+  // Función de inicialización lazy que solo se ejecuta en el cliente
   const getInitialLanguage = (): Language => {
-    if (typeof window !== "undefined") {
-      const savedLanguage = localStorage.getItem("language") as Language;
-      if (
-        savedLanguage &&
-        (savedLanguage === "fr" ||
-          savedLanguage === "en" ||
-          savedLanguage === "es")
-      ) {
-        return savedLanguage;
-      }
+    if (typeof window === "undefined") return "fr";
+    const savedLanguage = localStorage.getItem("language") as Language;
+    if (
+      savedLanguage &&
+      (savedLanguage === "fr" ||
+        savedLanguage === "en" ||
+        savedLanguage === "es")
+    ) {
+      return savedLanguage;
     }
     return "fr";
   };
@@ -39,17 +33,24 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem("language", lang);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("language", lang);
+    }
   };
 
+  const t = useMemo(() => translations[language], [language]);
+
+  const contextValue = useMemo(
+    () => ({
+      language,
+      setLanguage,
+      t,
+    }),
+    [language, t]
+  );
+
   return (
-    <LanguageContext.Provider
-      value={{
-        language,
-        setLanguage,
-        t: translations[language],
-      }}
-    >
+    <LanguageContext.Provider value={contextValue}>
       {children}
     </LanguageContext.Provider>
   );

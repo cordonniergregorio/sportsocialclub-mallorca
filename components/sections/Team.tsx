@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, memo } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 
-export function Team() {
+export const Team = memo(function Team() {
   const { t } = useLanguage();
   const [selectedMember, setSelectedMember] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -58,14 +58,28 @@ export function Team() {
         <div className="max-w-6xl mx-auto overflow-visible">
           <motion.div
             className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0.3, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             data-framer-motion
           >
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-[1.2] max-w-5xl mx-auto overflow-visible pr-4">
               {t.team.title}
+              <br />
+              <span
+                className="font-[family-name:var(--font-dancing)] text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible gradient-text-animated-colorful"
+                style={{
+                  lineHeight: "1.4",
+                  paddingTop: "0.3em",
+                  paddingBottom: "0.4em",
+                  paddingRight: "0.2em",
+                  paddingLeft: "0.1em",
+                  display: "inline-block",
+                }}
+              >
+                {t.team.titleHighlight}
+              </span>
             </h2>
             <p className="text-xl lg:text-2xl text-gray-600 font-light max-w-3xl mx-auto leading-relaxed">
               {t.team.description}
@@ -74,10 +88,10 @@ export function Team() {
 
           <motion.div
             className="flex justify-center gap-8 mb-16 px-8 py-8 overflow-visible"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0.3, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
             data-framer-motion
           >
             {teamMembers.map((member, index) => (
@@ -101,6 +115,8 @@ export function Team() {
                     alt={member.name}
                     fill
                     className="object-cover"
+                    loading="lazy"
+                    sizes="(max-width: 640px) 96px, (max-width: 1024px) 128px, 160px"
                   />
                 </motion.div>
               </motion.button>
@@ -109,10 +125,10 @@ export function Team() {
 
           <motion.div
             className="text-center max-w-3xl mx-auto min-h-[200px]"
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0.3 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             data-framer-motion
           >
             <AnimatePresence mode="wait">
@@ -136,4 +152,4 @@ export function Team() {
       </div>
     </section>
   );
-}
+});

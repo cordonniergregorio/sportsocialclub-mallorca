@@ -1,0 +1,22 @@
+<svg width="420" height="120" viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Símbolo -->
+  <circle cx="60" cy="60" r="45" fill="#006F9D"/>
+  
+  <path d="M30 65 C45 45, 75 45, 90 60" 
+        fill="none" stroke="#FF7E3B" stroke-width="6" stroke-linecap="round"/>
+        
+  <path d="M32 75 C48 65, 72 65, 88 75" 
+        fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M35 85 C50 80, 70 80, 85 85" 
+        fill="none" stroke="#A3B18A" stroke-width="3" stroke-linecap="round"/>
+  <!-- Texto -->
+  <text x="120" y="52" font-size="28" font-family="Montserrat, Arial, sans-serif"
+        fill="#4A4A4A" font-weight="700">
+    Sport Social Club
+  </text>
+  <text x="120" y="80" font-size="18" font-family="Montserrat, Arial, sans-serif"
+        fill="#006F9D" font-weight="500">
+    Mallorca
+  </text>
+</svg>
+

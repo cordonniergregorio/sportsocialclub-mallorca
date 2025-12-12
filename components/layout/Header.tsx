@@ -1,23 +1,33 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, memo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Lock, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { Language } from "@/lib/translations";
 
-export function Header() {
+export const Header = memo(function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -36,25 +46,31 @@ export function Header() {
     };
   }, [isLanguageMenuOpen]);
 
-  const languages: { code: Language; label: string; flag: string }[] = [
-    { code: "fr", label: "Français", flag: "🇫🇷" },
-    { code: "en", label: "English", flag: "🇬🇧" },
-    { code: "es", label: "Español", flag: "🇪🇸" },
-  ];
+  const languages: { code: Language; label: string; flag: string }[] = useMemo(
+    () => [
+      { code: "fr", label: "Français", flag: "🇫🇷" },
+      { code: "en", label: "English", flag: "🇬🇧" },
+      { code: "es", label: "Español", flag: "🇪🇸" },
+    ],
+    []
+  );
 
-  const navLinks = [
-    { href: "#equipo", label: t.header.nav.team },
-    { href: "#concepto", label: t.header.nav.concept },
-    { href: "#proyectos", label: t.header.nav.projects },
-    { href: "#inversion", label: t.header.nav.investment },
-  ];
+  const navLinks = useMemo(
+    () => [
+      { href: "#equipo", label: t.header.nav.team },
+      { href: "#concepto", label: t.header.nav.concept },
+      { href: "#proyectos", label: t.header.nav.projects },
+      { href: "#inversion", label: t.header.nav.investment },
+    ],
+    [t]
+  );
 
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
           ? "bg-white/98 backdrop-blur-xl border-b border-gray-200/50 shadow-lg"
-          : "bg-transparent"
+          : "bg-black/20 backdrop-blur-md border-b border-white/10"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -63,13 +79,19 @@ export function Header() {
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-24">
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link
-              href="/"
-              className={`text-lg lg:text-xl font-light tracking-wide transition-colors ${
-                isScrolled ? "text-gray-900" : "text-white"
-              }`}
-            >
-              {t.clubName}
+            <Link href="/" className="flex items-start">
+              <Image
+                src={
+                  isScrolled
+                    ? "/images/logoPrimary.png"
+                    : "/images/logoPrimary.png"
+                }
+                alt={t.clubName}
+                width={190}
+                height={60}
+                className=" w-auto object-contain transition-opacity duration-300"
+                priority
+              />
             </Link>
           </motion.div>
 
@@ -90,7 +112,7 @@ export function Header() {
                   }`}
                 >
                   {link.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-emerald-500 group-hover:w-full transition-all duration-300"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#006F9D] to-[#FF7E3B] group-hover:w-full transition-all duration-300"></span>
                 </Link>
               </motion.div>
             ))}
@@ -132,14 +154,14 @@ export function Header() {
                         }}
                         className={`w-full text-left px-4 py-3 text-sm transition-colors flex items-center gap-2 ${
                           language === lang.code
-                            ? "bg-blue-50 text-blue-600 font-medium"
+                            ? "bg-[#006F9D]/10 text-[#006F9D] font-medium"
                             : "text-gray-700 hover:bg-gray-50"
                         }`}
                       >
                         <span className="text-lg">{lang.flag}</span>
                         <span>{lang.label}</span>
                         {language === lang.code && (
-                          <span className="ml-auto text-blue-600">✓</span>
+                          <span className="ml-auto text-[#006F9D]">✓</span>
                         )}
                       </button>
                     ))}
@@ -172,4 +194,4 @@ export function Header() {
       </nav>
     </motion.header>
   );
-}
+});

@@ -28,9 +28,9 @@ export function InvestorsContent() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           whileHover={{
-            borderColor: "rgb(59, 130, 246)",
+            borderColor: "#006F9D",
             boxShadow:
-              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)",
+              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 111, 157, 0.1)",
           }}
         >
           <div className="mb-6">
@@ -43,13 +43,13 @@ export function InvestorsContent() {
             </p>
           </div>
           <div className="space-y-5">
-            <div className="border-l-4 border-blue-500 pl-4 py-2">
+            <div className="border-l-4 border-[#006F9D] pl-4 py-2">
               <p className="text-xs text-gray-500 mb-1 font-light uppercase tracking-wider">
                 {t.investorsContent.financial.investment}
               </p>
               <p className="text-3xl font-bold text-gray-900">1,25 M€</p>
             </div>
-            <div className="border-l-4 border-emerald-500 pl-4 py-2">
+            <div className="border-l-4 border-[#FF7E3B] pl-4 py-2">
               <p className="text-xs text-gray-500 mb-1 font-light uppercase tracking-wider">
                 {t.investorsContent.financial.guarantees}
               </p>
@@ -81,9 +81,9 @@ export function InvestorsContent() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           whileHover={{
-            borderColor: "rgb(59, 130, 246)",
+            borderColor: "#006F9D",
             boxShadow:
-              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)",
+              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 111, 157, 0.1)",
           }}
         >
           <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
@@ -105,9 +105,9 @@ export function InvestorsContent() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           whileHover={{
-            borderColor: "rgb(59, 130, 246)",
+            borderColor: "#006F9D",
             boxShadow:
-              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)",
+              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 111, 157, 0.1)",
           }}
         >
           <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
@@ -117,7 +117,7 @@ export function InvestorsContent() {
           <ul className="space-y-2.5 text-gray-600 font-light text-sm">
             {t.investorsContent.location.items.map((item, index) => (
               <li key={index} className="flex items-start gap-3">
-                <span className="text-blue-600 mt-1.5">•</span>
+                <span className="text-[#006F9D] mt-1.5">•</span>
                 <span>{item}</span>
               </li>
             ))}
@@ -131,9 +131,9 @@ export function InvestorsContent() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
           whileHover={{
-            borderColor: "rgb(59, 130, 246)",
+            borderColor: "#006F9D",
             boxShadow:
-              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)",
+              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 111, 157, 0.1)",
           }}
         >
           <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
@@ -175,9 +175,9 @@ export function InvestorsContent() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
           whileHover={{
-            borderColor: "rgb(59, 130, 246)",
+            borderColor: "#006F9D",
             boxShadow:
-              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)",
+              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 111, 157, 0.1)",
           }}
         >
           <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
@@ -201,7 +201,7 @@ export function InvestorsContent() {
                 {t.investorsContent.competition.lowEnd.description}
               </p>
             </div>
-            <div className="border-l-4 border-emerald-500 pl-4 py-3 mt-4 bg-emerald-50/30 rounded-r-lg">
+            <div className="border-l-4 border-[#FF7E3B] pl-4 py-3 mt-4 bg-[#FF7E3B]/10 rounded-r-lg">
               <p className="font-bold text-gray-900 mb-1">
                 {t.investorsContent.competition.opportunity.title}
               </p>
@@ -219,9 +219,9 @@ export function InvestorsContent() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
           whileHover={{
-            borderColor: "rgb(59, 130, 246)",
+            borderColor: "#006F9D",
             boxShadow:
-              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)",
+              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 111, 157, 0.1)",
           }}
         >
           <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
@@ -231,7 +231,7 @@ export function InvestorsContent() {
           <div className="space-y-3 text-gray-600 font-light leading-relaxed text-sm">
             {t.investorsContent.opportunity.items.map((item, index) => (
               <p key={index} className="flex items-start gap-2">
-                <span className="text-blue-600 mt-1">•</span>
+                <span className="text-[#006F9D] mt-1">•</span>
                 <span>{item}</span>
               </p>
             ))}
@@ -245,9 +245,9 @@ export function InvestorsContent() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.7 }}
           whileHover={{
-            borderColor: "rgb(59, 130, 246)",
+            borderColor: "#006F9D",
             boxShadow:
-              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)",
+              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 111, 157, 0.1)",
           }}
         >
           <h3 className="text-xl font-bold text-gray-900 mb-6">
@@ -256,7 +256,7 @@ export function InvestorsContent() {
           <ul className="space-y-2.5 text-gray-600 font-light text-sm">
             {t.investorsContent.business.items.map((item, index) => (
               <li key={index} className="flex items-start gap-3">
-                <span className="text-blue-600 mt-1.5">•</span>
+                <span className="text-[#006F9D] mt-1.5">•</span>
                 <span>{item}</span>
               </li>
             ))}
@@ -270,9 +270,9 @@ export function InvestorsContent() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.8 }}
           whileHover={{
-            borderColor: "rgb(59, 130, 246)",
+            borderColor: "#006F9D",
             boxShadow:
-              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)",
+              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 111, 157, 0.1)",
           }}
         >
           <h3 className="text-xl font-bold text-gray-900 mb-6">
@@ -281,7 +281,7 @@ export function InvestorsContent() {
           <ul className="space-y-2.5 text-gray-600 font-light text-sm">
             {t.investorsContent.future.items.map((item, index) => (
               <li key={index} className="flex items-start gap-3">
-                <span className="text-blue-600 mt-1.5">•</span>
+                <span className="text-[#006F9D] mt-1.5">•</span>
                 <span>{item}</span>
               </li>
             ))}
@@ -298,9 +298,9 @@ export function InvestorsContent() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.9 }}
           whileHover={{
-            borderColor: "rgb(59, 130, 246)",
+            borderColor: "#006F9D",
             boxShadow:
-              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)",
+              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 111, 157, 0.1)",
           }}
         >
           <h3 className="text-xl font-bold text-gray-900 mb-6">
@@ -315,7 +315,7 @@ export function InvestorsContent() {
                 {t.investorsContent.marketing.acquisition.items.map(
                   (item, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <span className="text-blue-600 mt-1.5">•</span>
+                      <span className="text-[#006F9D] mt-1.5">•</span>
                       <span>{item}</span>
                     </li>
                   )
@@ -330,7 +330,7 @@ export function InvestorsContent() {
                 {t.investorsContent.marketing.retention.items.map(
                   (item, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <span className="text-blue-600 mt-1.5">•</span>
+                      <span className="text-[#006F9D] mt-1.5">•</span>
                       <span>{item}</span>
                     </li>
                   )
@@ -347,9 +347,9 @@ export function InvestorsContent() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.0 }}
           whileHover={{
-            borderColor: "rgb(59, 130, 246)",
+            borderColor: "#006F9D",
             boxShadow:
-              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)",
+              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 111, 157, 0.1)",
           }}
         >
           <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
@@ -399,16 +399,16 @@ export function InvestorsContent() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.1 }}
           whileHover={{
-            borderColor: "rgb(59, 130, 246)",
+            borderColor: "#006F9D",
             boxShadow:
-              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)",
+              "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 111, 157, 0.1)",
           }}
         >
           <h3 className="text-xl font-bold text-gray-900 mb-6">
             {t.investorsContent.exit.title}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="border-l-4 border-blue-500 pl-5 py-3 bg-blue-50/30 rounded-r-lg">
+            <div className="border-l-4 border-[#006F9D] pl-5 py-3 bg-[#006F9D]/10 rounded-r-lg">
               <p className="font-bold text-gray-900 mb-2">
                 {t.investorsContent.exit.option1.title}
               </p>
@@ -416,7 +416,7 @@ export function InvestorsContent() {
                 {t.investorsContent.exit.option1.description}
               </p>
             </div>
-            <div className="border-l-4 border-emerald-500 pl-5 py-3 bg-emerald-50/30 rounded-r-lg">
+            <div className="border-l-4 border-[#FF7E3B] pl-5 py-3 bg-[#FF7E3B]/10 rounded-r-lg">
               <p className="font-bold text-gray-900 mb-2">
                 {t.investorsContent.exit.option2.title}
               </p>

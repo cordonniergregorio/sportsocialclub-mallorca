@@ -14,12 +14,16 @@ import { ScrollToTop } from "@/components/ui/ScrollToTop";
 
 export default function Home() {
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    if (typeof window === "undefined") return;
 
-    if (window.location.hash) {
-      window.history.replaceState(null, "", window.location.pathname);
+    const handleInitialScroll = () => {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    }
+      if (window.location.hash) {
+        window.history.replaceState(null, "", window.location.pathname);
+      }
+    };
+
+    requestAnimationFrame(handleInitialScroll);
   }, []);
 
   return (
