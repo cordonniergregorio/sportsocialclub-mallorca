@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,6 +12,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Euro } from "lucide-react";
+import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Project {
   name: string;
@@ -22,55 +24,18 @@ interface Project {
   image: string;
 }
 
-const projects: Project[] = [
-  {
-    name: "Santa Ponça",
-    location: "Santa Ponça, Mallorca",
-    investment: "€1.6MM",
-    features: [
-      "3 canchas de pádel techadas",
-      "7 canchas de tenis",
-      "Restaurante con baños y zonas comunes (300 m²)",
-      "Rooftop con vistas panorámicas a todo el club",
-      "Mejoras potenciales: más canchas de pádel, piscina, gimnasio",
-    ],
-    businessModel: [
-      "Sponsors corporativos (branding + beneficios)",
-      "Summer, premium, adults and kids camps",
-      "Alquiler por horas (pistas y clases particulares)",
-      "Eventos, restauración, beauty, tienda",
-    ],
-    image: "/images/4.jpg",
-  },
-  {
-    name: "Palmanova",
-    location: "Palmanova, Mallorca",
-    investment: "€1.25MM",
-    features: [
-      "8 canchas de pádel",
-      "Restaurante",
-      "Campo de fútbol 11",
-      "Instalaciones modernas",
-    ],
-    businessModel: [
-      "Programas para turistas",
-      "Alquiler de pistas",
-      "Escuela deportiva",
-      "Restauración",
-    ],
-    image: "/images/1.jpg",
-  },
-];
-
 function ProjectCardDialog({ project }: { project: Project }) {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="w-full mt-4 rounded-full bg-blue-600 hover:bg-blue-700 text-white border-0 transition-all font-light shadow-md hover:shadow-lg">
-          Ver detalles del proyecto
-        </Button>
+        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+          <Button className="w-full rounded-lg bg-black text-white hover:bg-gray-900 transition-all font-light px-6 py-3">
+            {t.projects.viewDetails}
+          </Button>
+        </motion.div>
       </DialogTrigger>
       <ProjectModal project={project} onClose={() => setOpen(false)} />
     </Dialog>
@@ -84,10 +49,10 @@ function ProjectModal({
   project: Project;
   onClose: () => void;
 }) {
+  const { t } = useLanguage();
   const handleInvestorLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     onClose();
-    // Scroll suave a la sección de inversores
     setTimeout(() => {
       const element = document.getElementById("inversores");
       if (element) {
@@ -120,13 +85,13 @@ function ProjectModal({
         <div>
           <h3 className="text-2xl font-light text-gray-900 mb-4 flex items-center gap-2">
             <Euro className="w-5 h-5 text-gray-600" />
-            Inversión estimada: {project.investment}
+            {t.projects.investment}: {project.investment}
           </h3>
         </div>
 
         <div>
           <h3 className="text-2xl font-light text-gray-900 mb-4">
-            Características principales
+            {t.projects.mainFeatures}
           </h3>
           <ul className="space-y-3 text-gray-600 font-light">
             {project.features.map((feature, index) => (
@@ -140,7 +105,7 @@ function ProjectModal({
 
         <div>
           <h3 className="text-2xl font-light text-gray-900 mb-4">
-            Modelo de negocio
+            {t.projects.businessModel}
           </h3>
           <ul className="space-y-3 text-gray-600 font-light">
             {project.businessModel.map((item, index) => (
@@ -154,16 +119,14 @@ function ProjectModal({
 
         <div className="border-l-2 border-gray-300 pl-6 py-4">
           <p className="text-sm text-gray-600 font-light">
-            <span className="font-normal">
-              Para información detallada del proyecto
-            </span>{" "}
+            <span className="font-normal">{t.projects.detailedInfo}</span>{" "}
             (mercado, competencia, roadmap, modelo financiero, etc.), accede al{" "}
             <a
               href="#inversores"
               onClick={handleInvestorLinkClick}
               className="text-gray-900 font-normal hover:underline cursor-pointer"
             >
-              área privada de inversores
+              {t.projects.accessInvestors}
             </a>
             .
           </p>
@@ -174,113 +137,161 @@ function ProjectModal({
 }
 
 export function Projects() {
+  const { t } = useLanguage();
+
+  const projects = useMemo(
+    (): Project[] => [
+      {
+        name: t.projects.santaPonca.name,
+        location: t.projects.santaPonca.location,
+        investment: "€1.6MM",
+        features: t.projects.santaPonca.features,
+        businessModel: t.projects.santaPonca.businessModel,
+        image: "/images/4.jpg",
+      },
+      {
+        name: t.projects.palmanova.name,
+        location: t.projects.palmanova.location,
+        investment: "€1.25MM",
+        features: t.projects.palmanova.features,
+        businessModel: t.projects.palmanova.businessModel,
+        image: "/images/1.jpg",
+      },
+    ],
+    [t]
+  );
+
   return (
-    <section
-      id="proyectos"
-      className="py-32 bg-gradient-to-b from-white via-blue-50/20 to-white"
-    >
+    <section id="proyectos" className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto text-center mb-24">
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-light text-gray-900 mb-6 leading-tight">
-            Los Dos
-            <br />
-            <span className="font-normal">Proyectos</span>
-          </h2>
-          <p className="text-xl text-gray-500 font-light">
-            Dos propuestas complementarias para transformar la oferta deportiva
-            en Mallorca
-          </p>
-        </div>
+        <div className="max-w-7xl mx-auto overflow-visible">
+          <motion.div
+            className="mb-16 overflow-visible"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            data-framer-motion
+          >
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-[1.2] max-w-4xl overflow-visible pr-4">
+              {t.projects.title}
+              <br />
+              <motion.span
+                className="font-[family-name:var(--font-dancing)] text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible"
+                style={{
+                  lineHeight: "1.4",
+                  paddingTop: "0.3em",
+                  paddingBottom: "0.4em",
+                  paddingRight: "0.2em",
+                  paddingLeft: "0.1em",
+                  display: "inline-block",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  willChange: "background-image",
+                }}
+                animate={{
+                  backgroundImage: [
+                    "linear-gradient(90deg, #3b82f6, #10b981)",
+                    "linear-gradient(90deg, #10b981, #f59e0b)",
+                    "linear-gradient(90deg, #f59e0b, #3b82f6)",
+                    "linear-gradient(90deg, #3b82f6, #10b981)",
+                  ],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "linear",
+                  repeatType: "loop",
+                }}
+              >
+                {t.projects.titleHighlight}
+              </motion.span>
+            </h2>
+            <p className="text-xl lg:text-2xl text-gray-600 font-light max-w-3xl leading-relaxed">
+              {t.projects.description}
+            </p>
+          </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12  mx-auto">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="group relative rounded-2xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100"
-            >
-              {/* Imagen con overlay al hover */}
-              <div className="h-80 relative overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            {projects.map((project, index) => (
+              <motion.div
+                key={index}
+                className="group border-2 border-gray-200 rounded-xl overflow-hidden bg-white transition-all duration-300"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.15,
+                  ease: "easeOut",
+                }}
+                whileHover={{
+                  borderColor: "rgb(59, 130, 246)",
+                  boxShadow:
+                    "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)",
+                }}
+                data-framer-motion
+              >
+                <div className="h-64 relative overflow-hidden bg-gray-100">
+                  <motion.div
+                    className="absolute inset-0"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                  >
+                    <Image
+                      src={project.image}
+                      alt={project.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </motion.div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
 
-                {/* Badge de inversión sobre la imagen */}
-                <div className="absolute top-6 right-6 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
-                  <div className="flex items-center gap-2">
-                    <Euro className="w-4 h-4 text-blue-600" />
-                    <span className="text-lg font-semibold text-gray-900">
-                      {project.investment}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Título sobre la imagen */}
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <h3 className="text-4xl font-light text-white mb-2 drop-shadow-lg">
-                    {project.name}
-                  </h3>
-                  <p className="text-white/90 font-light">{project.location}</p>
-                </div>
-              </div>
-
-              {/* Contenido de la card */}
-              <div className="p-8 space-y-6 bg-white">
-                {/* Características destacadas */}
-                <div className="space-y-4">
-                  <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
-                    Características principales
-                  </h4>
-                  <ul className="space-y-3">
-                    {project.features.slice(0, 3).map((feature, idx) => (
-                      <li
-                        key={idx}
-                        className="flex items-start gap-3 group/item"
-                      >
-                        <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0"></div>
-                        <span className="text-gray-700 font-light leading-relaxed">
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
-                    {project.features.length > 3 && (
-                      <li className="text-sm text-blue-600 font-light pt-2">
-                        +{project.features.length - 3} características más
-                      </li>
-                    )}
-                  </ul>
-                </div>
-
-                {/* Divider */}
-                <div className="border-t border-gray-100"></div>
-
-                {/* Modelo de negocio preview */}
-                <div className="space-y-3">
-                  <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
-                    Modelo de negocio
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {project.businessModel.slice(0, 2).map((item, idx) => (
-                      <span
-                        key={idx}
-                        className="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-xs font-light"
-                      >
-                        {item.split(" ")[0]}
+                  <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
+                    <div className="flex items-center gap-2">
+                      <Euro className="w-4 h-4 text-blue-600" />
+                      <span className="text-lg font-semibold text-gray-900">
+                        {project.investment}
                       </span>
-                    ))}
-                    <span className="px-3 py-1.5 bg-gray-100 text-gray-600 rounded-full text-xs font-light">
-                      +{project.businessModel.length - 2} más
-                    </span>
+                    </div>
                   </div>
                 </div>
 
-                <ProjectCardDialog project={project} />
-              </div>
-            </div>
-          ))}
+                <div className="p-8 space-y-6">
+                  <div>
+                    <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
+                      {project.name}
+                    </h3>
+                    <p className="text-lg text-gray-600 font-light">
+                      {project.location}
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                      {t.projects.mainFeatures}
+                    </h4>
+                    <ul className="space-y-2">
+                      {project.features.slice(0, 3).map((feature, idx) => (
+                        <li
+                          key={idx}
+                          className="flex items-start gap-3 text-gray-700 font-light text-sm"
+                        >
+                          <span className="text-blue-600 mt-1.5">•</span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="border-t border-gray-100 pt-6">
+                    <ProjectCardDialog project={project} />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

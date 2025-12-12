@@ -118,5 +118,63 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "kern" 1, "liga" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Smooth scroll para navegadores que lo soportan */
+  @supports (scroll-behavior: smooth) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Mejoras de tipografía */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: -0.02em;
+    font-weight: 300;
+  }
+
+  /* Efectos de glassmorphism mejorados */
+  .backdrop-blur-md {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .backdrop-blur-xl {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Transiciones suaves globales - excluir elementos animados con framer-motion */
+  *:not([data-framer-motion]):not([data-framer-component]) {
+    transition-property: color, background-color, border-color,
+      text-decoration-color, fill, stroke, opacity, box-shadow, transform,
+      filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  /* Prevenir parpadeo en animaciones de framer-motion */
+  [data-framer-motion],
+  [data-framer-component] {
+    will-change: auto;
+  }
+
+  /* Evitar layout shift durante animaciones */
+  [data-framer-motion] {
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
 }

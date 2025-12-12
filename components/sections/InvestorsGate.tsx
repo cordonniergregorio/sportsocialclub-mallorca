@@ -1,30 +1,69 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { ProtectedSection } from "@/components/protected/ProtectedSection";
 import { InvestorsContent } from "@/components/protected/InvestorsContent";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function InvestorsGate() {
+  const { t } = useLanguage();
   const title = (
-    <div className="text-center">
-      <h2 className="text-5xl sm:text-6xl lg:text-7xl font-light text-gray-900 mb-6 leading-tight">
-        Área Privada
+    <motion.div
+      className="text-center mb-16 overflow-visible"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      data-framer-motion
+    >
+      <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight overflow-visible pr-4">
+        {t.investorsGate.title}
         <br />
-        <span className="font-normal">de Inversores</span>
+        <motion.span
+          className="font-[family-name:var(--font-dancing)] text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible"
+          animate={{
+            backgroundImage: [
+              "linear-gradient(90deg, #1e293b, #3b82f6)",
+              "linear-gradient(90deg, #3b82f6, #10b981)",
+              "linear-gradient(90deg, #10b981, #1e293b)",
+              "linear-gradient(90deg, #1e293b, #3b82f6)",
+            ],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "linear",
+            repeatType: "loop",
+          }}
+          style={{
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            willChange: "background-image",
+            lineHeight: "1.4",
+            paddingTop: "0.3em",
+            paddingBottom: "0.4em",
+            paddingRight: "0.2em",
+            paddingLeft: "0.1em",
+            display: "inline-block",
+          }}
+        >
+          {t.investorsGate.titleHighlight}
+        </motion.span>
       </h2>
-      <p className="text-xl text-gray-500 font-light">
-        Información confidencial del proyecto Santa Ponça
-      </p>
-    </div>
+     
+    </motion.div>
   );
 
   return (
-    <section id="inversores" className="py-24 bg-white">
+    <section id="inversores" className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <ProtectedSection title={title}>
-          <InvestorsContent />
-        </ProtectedSection>
+        <div className="max-w-7xl mx-auto overflow-visible">
+          <ProtectedSection title={title}>
+            <InvestorsContent />
+          </ProtectedSection>
+        </div>
       </div>
     </section>
   );
 }
-

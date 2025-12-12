@@ -1,15 +1,24 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Dancing_Script } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
 
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  variable: "--font-dancing",
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
-  title: "Club Deportivo Mallorca - Un nuevo concepto de club social y deportivo",
-  description: "Una propuesta única que integra deporte, gastronomía, bienestar y comunidad familiar en Mallorca",
+  title:
+    "Club Deportivo Mallorca - Un nouveau concept de club social et sportif",
+  description:
+    "Une proposition unique qui intègre sport, gastronomie, bien-être et communauté familiale à Majorque",
 };
 
 export default function RootLayout({
@@ -18,9 +27,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
-      <body className={`${inter.variable} font-sans antialiased`}>
-        {children}
+    <html lang="fr">
+      <body
+        className={`${inter.variable} ${dancingScript.variable} font-sans antialiased`}
+      >
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );
