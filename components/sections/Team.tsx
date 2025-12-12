@@ -53,9 +53,9 @@ export function Team() {
   };
 
   return (
-    <section id="equipo" className="py-20 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+    <section id="equipo" className="py-20 bg-white overflow-visible">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
+        <div className="max-w-6xl mx-auto overflow-visible">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -73,7 +73,7 @@ export function Team() {
           </motion.div>
 
           <motion.div
-            className="flex justify-center gap-8 mb-16"
+            className="flex justify-center gap-8 mb-16 px-8 py-8 overflow-visible"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -84,7 +84,7 @@ export function Team() {
               <motion.button
                 key={member.id}
                 onClick={() => handleMemberClick(index)}
-                className="relative focus:outline-none"
+                className="relative focus:outline-none overflow-visible"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -94,12 +94,6 @@ export function Team() {
                       ? "border-gray-300 scale-110 opacity-100"
                       : "border-gray-200 opacity-50"
                   }`}
-                  animate={{
-                    boxShadow:
-                      selectedMember === index
-                        ? "0 20px 40px -10px rgba(0, 0, 0, 0.3), 0 10px 20px -5px rgba(0, 0, 0, 0.2)"
-                        : "0 0px 0px 0px rgba(0, 0, 0, 0)",
-                  }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                 >
                   <Image

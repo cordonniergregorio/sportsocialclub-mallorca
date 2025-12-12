@@ -184,29 +184,15 @@ export function Hero() {
                 className="flex justify-end"
                 data-framer-motion
               >
-                <motion.div
-                  animate={{
-                    y: [0, -8, 0],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1.5,
-                  }}
-                  whileHover={{ scale: 1.05, y: 0 }}
-                  whileTap={{ scale: 0.95 }}
+                <Button
+                  onClick={() => scrollToSection("proyectos")}
+                  className="group bg-black text-white hover:bg-gray-900 rounded-lg px-6 py-6 text-base font-light transition-all duration-300 flex items-center gap-3 w-fit"
                 >
-                  <Button
-                    onClick={() => scrollToSection("proyectos")}
-                    className="group bg-black text-white hover:bg-gray-900 rounded-lg px-6 py-6 text-base font-light transition-all duration-300 flex items-center gap-3 w-fit"
-                  >
-                    <span>{t.hero.cta}</span>
-                    <div className="bg-white rounded-full p-1.5 group-hover:translate-x-1 transition-transform">
-                      <ArrowRight className="w-4 h-4 text-black" />
-                    </div>
-                  </Button>
-                </motion.div>
+                  <span>{t.hero.cta}</span>
+                  <div className="bg-white rounded-full p-1.5 group-hover:translate-x-1 transition-transform">
+                    <ArrowRight className="w-4 h-4 text-black" />
+                  </div>
+                </Button>
               </motion.div>
             </motion.div>
           </div>

@@ -38,27 +38,9 @@ export function Banner() {
               data-framer-motion
             >
               {t.banner.title}{" "}
-              <motion.span
-                className="font-[family-name:var(--font-dancing)] text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible"
-                animate={{
-                  backgroundImage: [
-                    "linear-gradient(90deg, #ffffff, #93c5fd)",
-                    "linear-gradient(90deg, #93c5fd, #6ee7b7)",
-                    "linear-gradient(90deg, #6ee7b7, #ffffff)",
-                    "linear-gradient(90deg, #ffffff, #93c5fd)",
-                  ],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "linear",
-                  repeatType: "loop",
-                }}
+              <span
+                className="font-[family-name:var(--font-dancing)] text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible gradient-text-animated-blue"
                 style={{
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  willChange: "background-image",
                   lineHeight: "1.4",
                   paddingTop: "0.3em",
                   paddingBottom: "0.4em",
@@ -66,7 +48,7 @@ export function Banner() {
                 }}
               >
                 {t.banner.titleHighlight}
-              </motion.span>
+              </span>
             </motion.h2>
             <motion.p
               className="text-lg sm:text-xl lg:text-2xl text-white/90 font-light max-w-2xl mx-auto leading-relaxed"

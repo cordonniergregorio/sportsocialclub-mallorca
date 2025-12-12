@@ -48,27 +48,9 @@ export function Concept() {
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-[1.2] max-w-5xl overflow-visible pr-4">
               {t.concept.title}
               <br />
-              <motion.span
-                className="font-[family-name:var(--font-dancing)] text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible"
-                animate={{
-                  backgroundImage: [
-                    "linear-gradient(90deg, #3b82f6, #10b981)",
-                    "linear-gradient(90deg, #10b981, #f59e0b)",
-                    "linear-gradient(90deg, #f59e0b, #3b82f6)",
-                    "linear-gradient(90deg, #3b82f6, #10b981)",
-                  ],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "linear",
-                  repeatType: "loop",
-                }}
+              <span
+                className="font-[family-name:var(--font-dancing)] text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible gradient-text-animated-colorful"
                 style={{
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  willChange: "background-image",
                   lineHeight: "1.4",
                   paddingTop: "0.3em",
                   paddingBottom: "0.4em",
@@ -78,7 +60,7 @@ export function Concept() {
                 }}
               >
                 {t.concept.titleHighlight}
-              </motion.span>
+              </span>
             </h2>
             <motion.p
               className="text-xl lg:text-2xl text-gray-600 font-light max-w-3xl leading-relaxed"

@@ -176,8 +176,8 @@ export function Projects() {
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-[1.2] max-w-4xl overflow-visible pr-4">
               {t.projects.title}
               <br />
-              <motion.span
-                className="font-[family-name:var(--font-dancing)] text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible"
+              <span
+                className="font-[family-name:var(--font-dancing)] text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible gradient-text-animated-colorful"
                 style={{
                   lineHeight: "1.4",
                   paddingTop: "0.3em",
@@ -185,28 +185,10 @@ export function Projects() {
                   paddingRight: "0.2em",
                   paddingLeft: "0.1em",
                   display: "inline-block",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  willChange: "background-image",
-                }}
-                animate={{
-                  backgroundImage: [
-                    "linear-gradient(90deg, #3b82f6, #10b981)",
-                    "linear-gradient(90deg, #10b981, #f59e0b)",
-                    "linear-gradient(90deg, #f59e0b, #3b82f6)",
-                    "linear-gradient(90deg, #3b82f6, #10b981)",
-                  ],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "linear",
-                  repeatType: "loop",
                 }}
               >
                 {t.projects.titleHighlight}
-              </motion.span>
+              </span>
             </h2>
             <p className="text-xl lg:text-2xl text-gray-600 font-light max-w-3xl leading-relaxed">
               {t.projects.description}
@@ -218,18 +200,21 @@ export function Projects() {
               <motion.div
                 key={index}
                 className="group border-2 border-gray-200 rounded-xl overflow-hidden bg-white transition-all duration-300"
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0.3, y: 5 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: true, margin: "200px" }}
                 transition={{
-                  duration: 0.6,
-                  delay: index * 0.15,
+                  duration: 0.3,
+                  delay: index * 0.05,
                   ease: "easeOut",
                 }}
                 whileHover={{
                   borderColor: "rgb(59, 130, 246)",
                   boxShadow:
                     "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)",
+                }}
+                style={{
+                  backfaceVisibility: "hidden",
                 }}
                 data-framer-motion
               >

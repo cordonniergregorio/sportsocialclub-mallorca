@@ -19,27 +19,9 @@ export function InvestorsGate() {
       <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight overflow-visible pr-4">
         {t.investorsGate.title}
         <br />
-        <motion.span
-          className="font-[family-name:var(--font-dancing)] text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible"
-          animate={{
-            backgroundImage: [
-              "linear-gradient(90deg, #1e293b, #3b82f6)",
-              "linear-gradient(90deg, #3b82f6, #10b981)",
-              "linear-gradient(90deg, #10b981, #1e293b)",
-              "linear-gradient(90deg, #1e293b, #3b82f6)",
-            ],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "linear",
-            repeatType: "loop",
-          }}
+        <span
+          className="font-[family-name:var(--font-dancing)] text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible gradient-text-animated"
           style={{
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            willChange: "background-image",
             lineHeight: "1.4",
             paddingTop: "0.3em",
             paddingBottom: "0.4em",
@@ -49,9 +31,8 @@ export function InvestorsGate() {
           }}
         >
           {t.investorsGate.titleHighlight}
-        </motion.span>
+        </span>
       </h2>
-     
     </motion.div>
   );
 

@@ -89,37 +89,19 @@ export function Investment() {
                 <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 leading-[1.2] overflow-visible pr-4">
                   {t.investment.title}
                   <br />
-                  <motion.span
-                    className="font-[family-name:var(--font-dancing)] text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible"
-                    animate={{
-                      backgroundImage: [
-                        "linear-gradient(90deg, #ffffff, #93c5fd)",
-                        "linear-gradient(90deg, #93c5fd, #6ee7b7)",
-                        "linear-gradient(90deg, #6ee7b7, #ffffff)",
-                        "linear-gradient(90deg, #ffffff, #93c5fd)",
-                      ],
-                    }}
-                    transition={{
-                      duration: 5,
-                      repeat: Infinity,
-                      ease: "linear",
-                      repeatType: "loop",
-                    }}
+                  <span
+                    className="font-[family-name:var(--font-dancing)] text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible gradient-text-animated-blue"
                     style={{
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
                       lineHeight: "1.4",
                       paddingTop: "0.3em",
                       paddingBottom: "0.4em",
                       paddingRight: "0.2em",
                       paddingLeft: "0.1em",
                       display: "inline-block",
-                      willChange: "background-image",
                     }}
                   >
                     {t.investment.titleHighlight}
-                  </motion.span>
+                  </span>
                 </h2>
                 <p className="text-lg lg:text-xl text-white/90 font-light max-w-2xl leading-relaxed">
                   {t.investment.description}
@@ -133,12 +115,12 @@ export function Investment() {
               <motion.div
                 key={index}
                 className="border-2 border-white/30 rounded-xl p-6 bg-white/20 backdrop-blur-md transition-all duration-300 group"
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0.3, y: 5 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: true, margin: "200px" }}
                 transition={{
-                  duration: 0.6,
-                  delay: index * 0.1,
+                  duration: 0.3,
+                  delay: index * 0.04,
                   ease: "easeOut",
                 }}
                 whileHover={{
@@ -146,6 +128,9 @@ export function Investment() {
                   backgroundColor: "rgba(255, 255, 255, 0.3)",
                   boxShadow:
                     "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.2)",
+                }}
+                style={{
+                  backfaceVisibility: "hidden",
                 }}
                 data-framer-motion
               >

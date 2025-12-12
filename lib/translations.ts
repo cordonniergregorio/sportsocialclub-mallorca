@@ -255,7 +255,7 @@ export interface Translations {
 
 export const translations: Record<Language, Translations> = {
   fr: {
-    clubName: "Club Deportivo Mallorca",
+    clubName: "Club Sportif Majorque",
     header: {
       nav: {
         team: "L'Équipe",
@@ -586,7 +586,7 @@ export const translations: Record<Language, Translations> = {
     },
   },
   en: {
-    clubName: "Club Deportivo Mallorca",
+    clubName: "Mallorca Racket Club",
     header: {
       nav: {
         team: "The Team",
