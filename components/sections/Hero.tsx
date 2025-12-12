@@ -1,10 +1,82 @@
 "use client";
 
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ArrowDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function Hero() {
+  const { t } = useLanguage();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+
+  const fullText = t.hero.title;
+  const secondLine = t.hero.titleHighlight;
+  const [displayedText, setDisplayedText] = useState("");
+  const [displayedSecondLine, setDisplayedSecondLine] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname);
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
+
+    const preventScroll = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    };
+
+    preventScroll();
+    setTimeout(preventScroll, 0);
+    setTimeout(preventScroll, 100);
+    setTimeout(preventScroll, 200);
+  }, []);
+
+  useEffect(() => {
+    setDisplayedText("");
+    setDisplayedSecondLine("");
+    setShowCursor(true);
+    setIsTypingComplete(false);
+
+    let currentIndex = 0;
+    const typingInterval = setInterval(() => {
+      if (currentIndex < fullText.length) {
+        setDisplayedText(fullText.slice(0, currentIndex + 1));
+        currentIndex++;
+      } else {
+        clearInterval(typingInterval);
+        let secondIndex = 0;
+        const secondInterval = setInterval(() => {
+          if (secondIndex < secondLine.length) {
+            setDisplayedSecondLine(secondLine.slice(0, secondIndex + 1));
+            secondIndex++;
+          } else {
+            clearInterval(secondInterval);
+
+            setTimeout(() => {
+              setShowCursor(false);
+              setIsTypingComplete(true);
+            }, 500);
+          }
+        }, 50);
+        return () => clearInterval(secondInterval);
+      }
+    }, 50);
+
+    return () => clearInterval(typingInterval);
+  }, [fullText, secondLine]);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -13,58 +85,119 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Imagen de fondo */}
-      <div className="absolute inset-0 z-0">
+    <section
+      ref={containerRef}
+      className="relative py-20 lg:py-30 overflow-hidden"
+    >
+      <motion.div className="absolute inset-0 z-0" style={{ y }}>
         <Image
           src="/images/4.jpg"
-          alt="Club Deportivo Mallorca"
+          alt={t.clubName}
           fill
           className="object-cover"
           priority
           quality={90}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
-      </div>
+        <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]"></div>
+      </motion.div>
 
-      {/* Contenido */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
-        <div className="max-w-5xl mx-auto text-center space-y-12">
-          <div className="space-y-8">
-            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-light text-white leading-[1.1] tracking-tight drop-shadow-lg">
-              Un nuevo concepto
-              <br />
-              <span className="font-normal">de club social y deportivo</span>
-              <br />
-              <span className="font-light">en Mallorca</span>
-            </h1>
-
-            <p className="text-xl sm:text-2xl lg:text-3xl text-white/90  mx-auto leading-relaxed font-light drop-shadow-md">
-              Una propuesta única que integra deporte, gastronomía, bienestar y
-              comunidad familiar, con dos proyectos complementarios que
-              transformarán la oferta deportiva en la paradisíaca isla.
-            </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-12">
-            <Button
-              size="lg"
-              className="text-base px-8 py-6 rounded-full border-2 border-white bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-gray-900 transition-all font-light"
-              onClick={() => scrollToSection("proyectos")}
+      <motion.div
+        className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8"
+        style={{ opacity }}
+      >
+        <div className=" mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start min-h-[500px]">
+            <motion.div
+              className="space-y-6"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              data-framer-motion
             >
-              Descubre los proyectos
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="text-base px-8 py-6 rounded-full border-2 border-white/50 bg-transparent text-white hover:bg-white/10 hover:border-white transition-all font-light backdrop-blur-sm"
-              onClick={() => scrollToSection("equipo")}
+              <h1 className="text-5xl sm:text-6xl lg:text-6xl font-bold text-white leading-none tracking-tight overflow-visible">
+                {displayedText}
+                {displayedText.length === fullText.length && (
+                  <>
+                    {" "}
+                    <motion.span
+                      className="font-bold text-6xl sm:text-7xl lg:text-8xl font-[family-name:var(--font-dancing)] text-white/95 inline-block overflow-visible"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                      style={{
+                        lineHeight: "1",
+                        marginTop: "-0.1em",
+                        marginBottom: "-0.1em",
+                        display: "inline-block",
+                        verticalAlign: "baseline",
+                      }}
+                    >
+                      {displayedSecondLine}
+                    </motion.span>
+                  </>
+                )}
+                {showCursor && (
+                  <motion.span
+                    className="inline-block w-[2px] h-[1.2em] bg-white ml-1 align-middle"
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{
+                      duration: 0.8,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
+                )}
+              </h1>
+
+              <motion.p
+                className="text-lg lg:text-2xl text-white/90 leading-relaxed font-light max-w-lg"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                data-framer-motion
+              >
+                {t.hero.description}
+              </motion.p>
+            </motion.div>
+
+            <motion.div
+              className="flex flex-col justify-end text-right self-end space-y-6"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              data-framer-motion
             >
-              Conoce al equipo
-            </Button>
+              <motion.p
+                className="text-lg lg:text-2xl text-white/90 leading-relaxed font-light"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+                data-framer-motion
+              >
+                {t.hero.secondaryDescription}
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+                className="flex justify-end"
+                data-framer-motion
+              >
+                <Button
+                  onClick={() => scrollToSection("proyectos")}
+                  className="group bg-black text-white hover:bg-gray-900 rounded-lg px-6 py-6 text-base font-light transition-all duration-300 flex items-center gap-3 w-fit"
+                >
+                  <span>{t.hero.cta}</span>
+                  <div className="bg-white rounded-full p-1.5 group-hover:translate-x-1 transition-transform">
+                    <ArrowRight className="w-4 h-4 text-black" />
+                  </div>
+                </Button>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

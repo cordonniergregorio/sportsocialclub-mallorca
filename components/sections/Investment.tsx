@@ -1,102 +1,157 @@
 "use client";
 
+import { useRef, useMemo } from "react";
 import Image from "next/image";
-
-const investmentPoints = [
-  {
-    title: "Valor diferencial",
-    description:
-      "Club multideportivo, familiar y de media-alta gama, con servicios integrados (deporte, restauración, bienestar, cuidado infantil) que lo distinguen de clubes tradicionales.",
-  },
-  {
-    title: "Demanda creciente en Mallorca",
-    description:
-      "Mallorca tiene un potencial excepcional, con demanda tanto de residentes como de turistas; existe una necesidad real de clubes de calidad integral durante todo el año.",
-  },
-  {
-    title: "Proyectos complementarios",
-    description:
-      "Más allá del deporte —pistas, gimnasio, wellness—, se incorporan servicios como restaurante, eventos, actividades familiares, bienestar, lo que multiplica las fuentes de ingresos.",
-  },
-  {
-    title: "Competencia vs ventaja estratégica",
-    description:
-      "Frente a clubes tradicionales o de gama media, la oferta integral del club (deporte + bienestar + ocio + familia) y su estructura profesional representan una ventaja competitiva clara.",
-  },
-  {
-    title: "Sostenibilidad",
-    description:
-      "Gracias a diversificar servicios, al modelo de membresías y a una gestión profesional desde el inicio, el proyecto tiene bases sólidas para funcionar todo el año y ofrecer calidad a residentes de la zona, reduciendo riesgos de estacionalidad.",
-  },
-  {
-    title: "Oportunidad de retorno",
-    description:
-      "Combinando estructura sólida, demanda, diversificación de ingresos y gestión eficiente, el proyecto representa un alto potencial de rentabilidad y valorización.",
-  },
-];
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function Investment() {
+  const { t } = useLanguage();
+
+  const investmentPoints = useMemo(
+    () => [
+      {
+        title: t.investment.points.value.title,
+        description: t.investment.points.value.description,
+      },
+      {
+        title: t.investment.points.demand.title,
+        description: t.investment.points.demand.description,
+      },
+      {
+        title: t.investment.points.complementary.title,
+        description: t.investment.points.complementary.description,
+      },
+      {
+        title: t.investment.points.competition.title,
+        description: t.investment.points.competition.description,
+      },
+      {
+        title: t.investment.points.sustainability.title,
+        description: t.investment.points.sustainability.description,
+      },
+      {
+        title: t.investment.points.return.title,
+        description: t.investment.points.return.description,
+      },
+    ],
+    [t]
+  );
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+
   return (
-    <section id="inversion" className="relative py-32 overflow-hidden">
-      {/* Imagen de fondo completa */}
-      <div className="absolute inset-0 z-0">
+    <section
+      ref={containerRef}
+      id="inversion"
+      className="relative py-30 overflow-hidden bg-white"
+    >
+      <motion.div className="absolute inset-0 z-0" style={{ y }}>
         <Image
           src="/images/6.jpg"
           alt="Inversión y Oportunidad"
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
-      </div>
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]"></div>
+      </motion.div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header con número grande */}
-        <div className="max-w-4xl mx-auto mb-20">
-          <div className="flex items-start gap-8 mb-12">
-            <div className="text-8xl sm:text-9xl font-light text-white/20 leading-none">
-              05
-            </div>
-            <div className="flex-1 pt-4">
-              <h2 className="text-5xl sm:text-6xl lg:text-7xl font-light text-white mb-6 leading-tight">
-                Inversión
-                <br />
-                <span className="font-normal">y Oportunidad</span>
-              </h2>
-              <p className="text-xl text-white/80 font-light max-w-2xl">
-                Una oportunidad única para formar parte del futuro del deporte y
-                la comunidad en Mallorca
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Grid con diseño alternativo - cards más grandes y espaciadas */}
-        <div className="max-w-7xl mx-auto space-y-6">
-          {investmentPoints.map((point, index) => (
-            <div key={index} className="group relative">
-              <div className="flex flex-col md:flex-row gap-8 items-start p-8 md:p-12 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300">
-                {/* Número de índice */}
-                <div className="flex-shrink-0 w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                  <span className="text-2xl font-light text-white">
-                    {index + 1}
+      <motion.div
+        className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        style={{ opacity }}
+      >
+        <div className="max-w-7xl mx-auto overflow-visible">
+          <motion.div
+            className="mb-16 overflow-visible"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            data-framer-motion
+          >
+            <div className="flex items-start gap-8">
+              <motion.div
+                className="text-7xl sm:text-8xl lg:text-9xl font-extralight text-white/20 leading-none"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+              >
+                05
+              </motion.div>
+              <div className="flex-1 pt-4 overflow-visible">
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 leading-[1.2] overflow-visible pr-4">
+                  {t.investment.title}
+                  <br />
+                  <span
+                    className="font-[family-name:var(--font-dancing)] text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible gradient-text-animated-blue"
+                    style={{
+                      lineHeight: "1.4",
+                      paddingTop: "0.3em",
+                      paddingBottom: "0.4em",
+                      paddingRight: "0.2em",
+                      paddingLeft: "0.1em",
+                      display: "inline-block",
+                    }}
+                  >
+                    {t.investment.titleHighlight}
                   </span>
-                </div>
-
-                {/* Contenido */}
-                <div className="flex-1 space-y-4">
-                  <h3 className="text-3xl md:text-4xl font-light text-white">
-                    {point.title}
-                  </h3>
-                  <div className="w-20 h-px bg-white/30"></div>
-                  <p className="text-lg text-white/85 leading-relaxed font-light ">
-                    {point.description}
-                  </p>
-                </div>
+                </h2>
+                <p className="text-lg lg:text-xl text-white/90 font-light max-w-2xl leading-relaxed">
+                  {t.investment.description}
+                </p>
               </div>
             </div>
-          ))}
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {investmentPoints.map((point, index) => (
+              <motion.div
+                key={index}
+                className="border-2 border-white/30 rounded-xl p-6 bg-white/20 backdrop-blur-md transition-all duration-300 group"
+                initial={{ opacity: 0.3, y: 5 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "200px" }}
+                transition={{
+                  duration: 0.3,
+                  delay: index * 0.04,
+                  ease: "easeOut",
+                }}
+                whileHover={{
+                  borderColor: "rgba(255, 255, 255, 0.6)",
+                  backgroundColor: "rgba(255, 255, 255, 0.3)",
+                  boxShadow:
+                    "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.2)",
+                }}
+                style={{
+                  backfaceVisibility: "hidden",
+                }}
+                data-framer-motion
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-emerald-500 flex items-center justify-center text-white font-bold text-lg">
+                    {index + 1}
+                  </div>
+                  <div className="flex-1 space-y-3">
+                    <h3 className="text-xl lg:text-2xl font-bold text-white">
+                      {point.title}
+                    </h3>
+                    <p className="text-base text-white/90 font-light leading-relaxed">
+                      {point.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

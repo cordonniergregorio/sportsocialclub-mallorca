@@ -118,5 +118,113 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "kern" 1, "liga" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Smooth scroll para navegadores que lo soportan */
+  @supports (scroll-behavior: smooth) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Mejoras de tipografía */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: -0.02em;
+    font-weight: 300;
+  }
+
+  /* Efectos de glassmorphism mejorados */
+  .backdrop-blur-md {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .backdrop-blur-xl {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Transiciones suaves globales - excluir elementos animados con framer-motion */
+  *:not([data-framer-motion]):not([data-framer-component]) {
+    transition-property: color, background-color, border-color,
+      text-decoration-color, fill, stroke, opacity, box-shadow, transform,
+      filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  /* Prevenir parpadeo en animaciones de framer-motion */
+  [data-framer-motion],
+  [data-framer-component] {
+    will-change: auto;
+  }
+
+  /* Evitar layout shift durante animaciones */
+  [data-framer-motion] {
+    backface-visibility: hidden;
+    perspective: 1000px;
+    transform: translateZ(0);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Prevenir parpadeo en cards con animaciones whileInView */
+  [data-framer-motion][style*="opacity"] {
+    contain: layout style paint;
+  }
+
+  /* Animación optimizada de gradiente para texto - más eficiente que animar backgroundImage */
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .gradient-text-animated {
+    background: linear-gradient(90deg, #1e293b, #3b82f6, #10b981, #1e293b);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 5s ease infinite;
+    will-change: background-position;
+  }
+
+  .gradient-text-animated-blue {
+    background: linear-gradient(90deg, #ffffff, #93c5fd, #6ee7b7, #ffffff);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 5s ease infinite;
+    will-change: background-position;
+  }
+
+  .gradient-text-animated-colorful {
+    background: linear-gradient(90deg, #3b82f6, #10b981, #f59e0b, #3b82f6);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 5s ease infinite;
+    will-change: background-position;
   }
 }

@@ -1,100 +1,124 @@
 "use client";
 
-import Image from "next/image";
+import { motion } from "framer-motion";
+import { Users, UtensilsCrossed, Heart, Zap } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { useMemo } from "react";
 
 export function Concept() {
+  const { t } = useLanguage();
+
+  const conceptCards = useMemo(
+    () => [
+      {
+        title: t.concept.cards.families.title,
+        description: t.concept.cards.families.description,
+        icon: Users,
+      },
+      {
+        title: t.concept.cards.gastronomy.title,
+        description: t.concept.cards.gastronomy.description,
+        icon: UtensilsCrossed,
+      },
+      {
+        title: t.concept.cards.wellbeing.title,
+        description: t.concept.cards.wellbeing.description,
+        icon: Heart,
+      },
+      {
+        title: t.concept.cards.technology.title,
+        description: t.concept.cards.technology.description,
+        icon: Zap,
+      },
+    ],
+    [t]
+  );
   return (
-    <section
-      id="concepto"
-      className="relative py-32 min-h-[90vh] flex items-center overflow-hidden"
-    >
-      {/* Imagen de fondo completa */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/3.jpg"
-          alt="Club Social Deportivo"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"></div>
-      </div>
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="mx-auto">
-          <div className="text-center mb-24">
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-light text-white mb-6 leading-tight drop-shadow-lg">
-              El Concepto
+    <section id="concepto" className="py-20 bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto overflow-visible">
+          <motion.div
+            className="mb-16 overflow-visible"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            data-framer-motion
+          >
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-[1.2] max-w-5xl overflow-visible pr-4">
+              {t.concept.title}
               <br />
-              <span className="font-normal">de Club Social Deportivo</span>
+              <span
+                className="font-[family-name:var(--font-dancing)] text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible gradient-text-animated-colorful"
+                style={{
+                  lineHeight: "1.4",
+                  paddingTop: "0.3em",
+                  paddingBottom: "0.4em",
+                  paddingRight: "0.2em",
+                  paddingLeft: "0.1em",
+                  display: "inline-block",
+                }}
+              >
+                {t.concept.titleHighlight}
+              </span>
             </h2>
-          </div>
+            <motion.p
+              className="text-xl lg:text-2xl text-gray-600 font-light max-w-3xl leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              data-framer-motion
+            >
+              {t.concept.description}
+            </motion.p>
+          </motion.div>
 
-          <div className=" mx-auto mb-20">
-            <p className="text-2xl text-white/90 leading-relaxed font-light text-center drop-shadow-md">
-              Ambos proyectos comparten una misma visión: crear clubes modernos,
-              vibrantes y familiares, con espacios deportivos de primer nivel y
-              un enfoque social para disfrutar todo el año.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12  mx-auto mb-20">
-            <div className="space-y-4 bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">
-              <h3 className="text-2xl font-light text-white">
-                Clubes familiares
-              </h3>
-              <p className="text-white/90 font-light leading-relaxed">
-                Espacios diseñados para disfrutar en familia durante todo el año
-              </p>
-            </div>
-
-            <div className="space-y-4 bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">
-              <h3 className="text-2xl font-light text-white">
-                Gastronomía integrada
-              </h3>
-              <p className="text-white/90 font-light leading-relaxed">
-                Restaurantes y rooftops de alta calidad como parte de la
-                experiencia
-              </p>
-            </div>
-
-            <div className="space-y-4 bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">
-              <h3 className="text-2xl font-light text-white">
-                Bienestar y comunidad
-              </h3>
-              <p className="text-white/90 font-light leading-relaxed">
-                Actividades, eventos y espacios para niños que fomentan la vida
-                social
-              </p>
-            </div>
-
-            <div className="space-y-4 bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">
-              <h3 className="text-2xl font-light text-white">
-                Tecnología moderna
-              </h3>
-              <p className="text-white/90 font-light leading-relaxed">
-                Reservas online, gestión innovadora y experiencia digital fluida
-              </p>
-            </div>
-          </div>
-
-          <div className=" mx-auto border-t border-white/30 pt-16">
-            <h3 className="text-3xl font-light text-white mb-8">
-              Servicios integrados
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-white/90 font-light">
-              <div className="space-y-3">
-                <p>Tenis y pádel de alta calidad</p>
-                <p>Fútbol 11 (Palmanova)</p>
-                <p>Restaurantes y rooftops</p>
-                <p>Zonas para niños / Kids Club</p>
-              </div>
-              <div className="space-y-3">
-                <p>Eventos y actividades</p>
-                <p>Escuela deportiva</p>
-                <p>Gestión moderna e innovación</p>
-                <p>Comunidad activa todo el año</p>
-              </div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {conceptCards.map((card, index) => {
+              const IconComponent = card.icon;
+              return (
+                <motion.div
+                  key={index}
+                  className="relative border-2 border-gray-200 rounded-xl p-6 bg-gradient-to-br from-white to-gray-50/50 transition-all duration-300 group"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: "easeOut",
+                  }}
+                  whileHover={{
+                    borderColor: "rgb(59, 130, 246)",
+                    boxShadow:
+                      "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)",
+                  }}
+                  data-framer-motion
+                >
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    whileInView={{ scale: 1, rotate: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{
+                      duration: 0.6,
+                      delay: index * 0.1 + 0.2,
+                      type: "spring",
+                      stiffness: 200,
+                    }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                  >
+                    <IconComponent className="w-7 h-7 text-gray-900 mb-4 group-hover:text-blue-600 transition-colors" />
+                  </motion.div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">
+                    {card.title}
+                  </h3>
+                  <p className="text-base text-gray-600 font-light leading-relaxed">
+                    {card.description}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>
