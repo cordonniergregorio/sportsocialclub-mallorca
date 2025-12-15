@@ -34,7 +34,7 @@ export const Investment = memo(function Investment() {
     >
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/6.jpg"
+          src="/images/3.jpg"
           alt="Inversión y Oportunidad"
           fill
           className="object-cover"

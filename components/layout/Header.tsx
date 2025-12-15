@@ -70,7 +70,7 @@ export const Header = memo(function Header() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
           ? "bg-white/98 backdrop-blur-xl border-b border-gray-200/50 shadow-lg"
-          : "bg-black/20 backdrop-blur-md border-b border-white/10"
+          : "bg-white/30 backdrop-blur-md border-b border-white/10"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -84,7 +84,7 @@ export const Header = memo(function Header() {
                 src={
                   isScrolled
                     ? "/images/logoPrimary.png"
-                    : "/images/logoonly.png"
+                    : "/images/logoPrimary.png"
                 }
                 alt={t.clubName}
                 width={190}

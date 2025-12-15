@@ -88,6 +88,12 @@ function InvestorSection({
 
 export function InvestorsContent() {
   const { t } = useLanguage();
+  const roadmapYears = [
+    t.investorsContent.roadmap.year2026.year,
+    t.investorsContent.roadmap.year2027.year,
+    t.investorsContent.roadmap.year2028.year,
+    t.investorsContent.roadmap.year2030.year,
+  ];
 
   return (
     <motion.div
@@ -97,7 +103,6 @@ export function InvestorsContent() {
       transition={{ duration: 0.6 }}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Modelo Financiero */}
         <InvestorSection
           title={t.investorsContent.financial.title}
           icon={<DollarSign className="w-6 h-6 text-[#006F9D]" />}
@@ -105,13 +110,13 @@ export function InvestorsContent() {
             <div className="flex items-end gap-4 mt-2">
               <div>
                 <p className="text-xs text-gray-500 font-light uppercase tracking-wider mb-1">
-                  Inversión
+                  {t.investorsContent.financial.investment}
                 </p>
                 <p className="text-3xl font-bold text-[#006F9D]">1,25 M€</p>
               </div>
               <div>
                 <p className="text-xs text-gray-500 font-light uppercase tracking-wider mb-1">
-                  EBITDA
+                  {t.investorsContent.financial.ebitda}
                 </p>
                 <p className="text-3xl font-bold text-[#FF7E3B]">300k €</p>
               </div>
@@ -153,16 +158,17 @@ export function InvestorsContent() {
           delay={0.1}
         />
 
-        {/* Propuesta de Valor */}
         <InvestorSection
           title={t.investorsContent.value.title}
           icon={<Target className="w-6 h-6 text-[#006F9D]" />}
           preview={
             <div className="mt-2">
-              <p className="text-sm text-gray-600 font-light">
-                Club social deportivo integral de alta calidad
+              <p className="text-sm text-gray-600 font-light line-clamp-2">
+                {t.investorsContent.value.p1}
               </p>
-              <p className="text-xs text-gray-400 mt-2">Concesión 31 años</p>
+              <p className="text-xs text-gray-400 mt-2 line-clamp-1">
+                {t.investorsContent.value.p3}
+              </p>
             </div>
           }
           fullContent={
@@ -177,7 +183,6 @@ export function InvestorsContent() {
           delay={0.2}
         />
 
-        {/* Ubicación */}
         <InvestorSection
           title={t.investorsContent.location.title}
           icon={<MapPin className="w-6 h-6 text-[#006F9D]" />}
@@ -187,7 +192,7 @@ export function InvestorsContent() {
                 {t.investorsContent.location.items.length}
               </p>
               <p className="text-sm text-gray-600 font-light">
-                Ventajas de ubicación
+                {t.investorsContent.location.title}
               </p>
             </div>
           }
@@ -204,7 +209,6 @@ export function InvestorsContent() {
           delay={0.3}
         />
 
-        {/* Mercado */}
         <InvestorSection
           title={t.investorsContent.market.title}
           icon={<Users className="w-6 h-6 text-[#006F9D]" />}
@@ -213,11 +217,15 @@ export function InvestorsContent() {
               <div className="flex items-end gap-4">
                 <div>
                   <p className="text-3xl font-bold text-[#006F9D]">450k</p>
-                  <p className="text-xs text-gray-500 mt-1">Residentes</p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {t.investorsContent.market.residents.title}
+                  </p>
                 </div>
                 <div>
                   <p className="text-3xl font-bold text-[#FF7E3B]">10M+</p>
-                  <p className="text-xs text-gray-500 mt-1">Turistas/año</p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {t.investorsContent.market.tourism.title}
+                  </p>
                 </div>
               </div>
             </div>
@@ -253,20 +261,21 @@ export function InvestorsContent() {
           delay={0.4}
         />
 
-        {/* Competencia */}
         <InvestorSection
           title={t.investorsContent.competition.title}
           icon={<Building2 className="w-6 h-6 text-[#006F9D]" />}
           preview={
             <div className="mt-2">
               <p className="text-sm text-gray-600 font-light">
-                Análisis competitivo y ventaja estratégica
+                {t.investorsContent.competition.opportunity.title}
               </p>
               <div className="flex items-center gap-2 mt-3">
                 <div className="flex-1 h-1 bg-gray-200 rounded-full overflow-hidden">
                   <div className="h-full bg-gradient-to-r from-[#006F9D] to-[#FF7E3B] w-3/4"></div>
                 </div>
-                <span className="text-xs text-gray-500">3 factores</span>
+                <span className="text-xs text-gray-500">
+                  3 {t.investorsContent.competition.title.toLowerCase()}
+                </span>
               </div>
             </div>
           }
@@ -301,7 +310,6 @@ export function InvestorsContent() {
           delay={0.5}
         />
 
-        {/* Oportunidad */}
         <InvestorSection
           title={t.investorsContent.opportunity.title}
           icon={<TrendingUp className="w-6 h-6 text-[#006F9D]" />}
@@ -311,7 +319,7 @@ export function InvestorsContent() {
                 {t.investorsContent.opportunity.items.length}
               </p>
               <p className="text-sm text-gray-600 font-light">
-                Oportunidades clave
+                {t.investorsContent.opportunity.title}
               </p>
             </div>
           }
@@ -328,7 +336,6 @@ export function InvestorsContent() {
           delay={0.6}
         />
 
-        {/* Modelo de Negocio */}
         <InvestorSection
           title={t.investorsContent.business.title}
           icon={<DollarSign className="w-6 h-6 text-[#006F9D]" />}
@@ -338,7 +345,7 @@ export function InvestorsContent() {
                 {t.investorsContent.business.items.length}
               </p>
               <p className="text-sm text-gray-600 font-light">
-                Fuentes de ingresos
+                {t.investorsContent.business.title}
               </p>
             </div>
           }
@@ -356,17 +363,17 @@ export function InvestorsContent() {
           className="md:col-span-2"
         />
 
-        {/* Potencial Futuro */}
         <InvestorSection
           title={t.investorsContent.future.title}
           icon={<TrendingUp className="w-6 h-6 text-[#006F9D]" />}
           preview={
             <div className="mt-2">
               <p className="text-sm text-gray-600 font-light">
-                Expansión y crecimiento
+                {t.investorsContent.future.title}
               </p>
               <p className="text-xs text-gray-400 mt-2">
-                {t.investorsContent.future.items.length} áreas potenciales
+                {t.investorsContent.future.items.length}{" "}
+                {t.investorsContent.future.title.toLowerCase()}
               </p>
             </div>
           }
@@ -389,7 +396,6 @@ export function InvestorsContent() {
           className="md:col-span-2"
         />
 
-        {/* Marketing y Ventas */}
         <InvestorSection
           title={t.investorsContent.marketing.title}
           icon={<Users className="w-6 h-6 text-[#006F9D]" />}
@@ -399,13 +405,17 @@ export function InvestorsContent() {
                 <p className="text-2xl font-bold text-[#006F9D]">
                   {t.investorsContent.marketing.acquisition.items.length}
                 </p>
-                <p className="text-xs text-gray-500 mt-1">Adquisición</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {t.investorsContent.marketing.acquisition.title}
+                </p>
               </div>
               <div>
                 <p className="text-2xl font-bold text-[#FF7E3B]">
                   {t.investorsContent.marketing.retention.items.length}
                 </p>
-                <p className="text-xs text-gray-500 mt-1">Retención</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {t.investorsContent.marketing.retention.title}
+                </p>
               </div>
             </div>
           }
@@ -447,14 +457,13 @@ export function InvestorsContent() {
           className="md:col-span-2"
         />
 
-        {/* Hoja de Ruta */}
         <InvestorSection
           title={t.investorsContent.roadmap.title}
           icon={<Calendar className="w-6 h-6 text-[#006F9D]" />}
           preview={
             <div className="mt-2">
               <p className="text-sm text-gray-600 font-light mb-3">
-                Timeline estratégico
+                {t.investorsContent.roadmap.title}
               </p>
               <div className="flex items-center gap-2">
                 <div className="flex-1 flex gap-1">
@@ -463,7 +472,10 @@ export function InvestorsContent() {
                   <div className="h-2 flex-1 bg-amber-500 rounded"></div>
                   <div className="h-2 flex-1 bg-purple-500 rounded"></div>
                 </div>
-                <span className="text-xs text-gray-500">4 años</span>
+                <span className="text-xs text-gray-500">
+                  {roadmapYears.length}{" "}
+                  {t.investorsContent.roadmap.title.toLowerCase()}
+                </span>
               </div>
             </div>
           }
@@ -507,7 +519,6 @@ export function InvestorsContent() {
           className="md:col-span-2"
         />
 
-        {/* Salida Futura */}
         <InvestorSection
           title={t.investorsContent.exit.title}
           icon={<Target className="w-6 h-6 text-[#006F9D]" />}
@@ -515,7 +526,7 @@ export function InvestorsContent() {
             <div className="mt-2">
               <p className="text-4xl font-bold text-[#006F9D] mb-1">2</p>
               <p className="text-sm text-gray-600 font-light">
-                Estrategias de salida
+                {t.investorsContent.exit.title}
               </p>
             </div>
           }

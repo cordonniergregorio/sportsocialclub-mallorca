@@ -67,7 +67,7 @@ export function ProtectedSection({ children, title }: ProtectedSectionProps) {
       {isAuthenticated ? (
         <div className="mt-12">{children}</div>
       ) : (
-        <div className="mt-12">
+        <div className="mt-2">
           <PasswordGate onUnlock={handleUnlock} />
         </div>
       )}

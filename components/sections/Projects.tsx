@@ -112,20 +112,7 @@ function ProjectModal({
           </ul>
         </div>
 
-        <div className="border-l-2 border-gray-300 pl-6 py-4">
-          <p className="text-sm text-gray-600 font-light">
-            <span className="font-normal">{t.projects.detailedInfo}</span>{" "}
-            (mercado, competencia, roadmap, modelo financiero, etc.), accede al{" "}
-            <a
-              href="#inversores"
-              onClick={handleInvestorLinkClick}
-              className="text-gray-900 font-normal hover:underline cursor-pointer"
-            >
-              {t.projects.accessInvestors}
-            </a>
-            .
-          </p>
-        </div>
+        
       </div>
     </DialogContent>
   );
@@ -141,14 +128,14 @@ export const Projects = memo(function Projects() {
         investment: "1.6MM",
         features: t.projects.santaPonca.features,
         businessModel: t.projects.santaPonca.businessModel,
-        image: "/images/4.jpg",
+        image: "/images/6.jpg",
       },
       {
         name: t.projects.palmanova.name,
         investment: "1.25MM",
         features: t.projects.palmanova.features,
         businessModel: t.projects.palmanova.businessModel,
-        image: "/images/1.jpg",
+        image: "/images/4.jpg",
       },
     ],
     [t]

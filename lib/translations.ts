@@ -44,6 +44,7 @@ export interface Translations {
     title: string;
     titleHighlight: string;
     description: string;
+    cards?: string[];
   };
   concept: {
     title: string;
@@ -304,6 +305,7 @@ export const translations: Record<Language, Translations> = {
       titleHighlight: "sport",
       description:
         "Un espace où le sport, la gastronomie et la communauté se rencontrent pour créer des moments uniques",
+      cards: ["Social", "Prime", "Profit"],
     },
     concept: {
       title: "Le concept de",
@@ -634,6 +636,7 @@ export const translations: Record<Language, Translations> = {
       titleHighlight: "sport",
       description:
         "A space where sports, gastronomy and community come together to create unique moments",
+      cards: ["Social", "Prime", "Profit"],
     },
     concept: {
       title: "The concept of",
@@ -964,6 +967,7 @@ export const translations: Record<Language, Translations> = {
       titleHighlight: "deporte",
       description:
         "Un espacio donde el deporte, la gastronomía y la comunidad se encuentran para crear momentos únicos",
+      cards: ["Social", "Prime", "Profit"],
     },
     concept: {
       title: "El concepto de",
