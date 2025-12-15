@@ -24,7 +24,7 @@ export const Team = memo(function Team() {
         name: t.team.members.gregorio.name,
         role: t.team.members.gregorio.role,
         description: t.team.members.gregorio.description,
-        image: "/images/grego3.jpg",
+        image: "/images/grego.jpeg",
       },
       {
         id: 3,
