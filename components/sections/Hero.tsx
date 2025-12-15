@@ -108,7 +108,7 @@ export const Hero = memo(function Hero() {
       className="relative py-20 lg:py-30 overflow-hidden"
     >
       <div className="absolute inset-0 z-0">
-        <AnimatePresence mode="wait">
+        <AnimatePresence initial={false} mode="sync">
           <motion.div
             key={currentImageIndex}
             initial={{ opacity: 0 }}

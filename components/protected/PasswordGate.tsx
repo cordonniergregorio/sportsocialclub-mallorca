@@ -17,7 +17,7 @@ export function PasswordGate({ onUnlock }: PasswordGateProps) {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const correctPassword = process.env.NEXT_PUBLIC_INVESTOR_PASSWORD || "12345";
+  const correctPassword = process.env.NEXT_PUBLIC_INVESTOR_PASSWORD;
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();

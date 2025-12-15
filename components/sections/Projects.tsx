@@ -48,6 +48,7 @@ function ProjectModal({
   onClose: () => void;
 }) {
   const { t } = useLanguage();
+  const contactEmail = "cordonnier.gregorio@gmail.com";
   const handleInvestorLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     onClose();
@@ -112,7 +113,17 @@ function ProjectModal({
           </ul>
         </div>
 
-        
+        <div className="border-t border-gray-200 pt-6">
+          <h3 className="text-2xl font-light text-gray-900 mb-3">
+            {t.projects.contact}
+          </h3>
+          <a
+            href={`mailto:${contactEmail}`}
+            className="inline-flex items-center gap-2 text-[#006F9D] font-semibold hover:underline"
+          >
+            {contactEmail}
+          </a>
+        </div>
       </div>
     </DialogContent>
   );
@@ -214,6 +225,12 @@ export const Projects = memo(function Projects() {
                     />
                   </motion.div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+
+                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
+                    <span className="text-xs font-semibold uppercase tracking-wide text-[#006F9D]">
+                      {t.projects.equityBadge}
+                    </span>
+                  </div>
 
                   <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
                     <div className="flex items-center gap-2">
