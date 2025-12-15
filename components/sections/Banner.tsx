@@ -5,7 +5,11 @@ import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { memo, useMemo } from "react";
 
-const bannerImages = ["/images/4.jpg", "/images/5.jpg", "/images/6.jpg"];
+const bannerImages = [
+  "/images/mallorca2.jpg",
+  "/images/mallorca1.jpg",
+  "/images/mallorca3.webp",
+];
 
 type BannerPoint = {
   title: [string, string];
@@ -34,7 +38,10 @@ export const Banner = memo(function Banner() {
   const { t } = useLanguage();
 
   const bannerPoints: BannerPoint[] = useMemo(() => {
-    const titles = t.banner?.cards ?? ["Social", "Prime", "Profit"];
+    const titles =
+      t.banner?.cards?.length && t.banner.cards.length > 0
+        ? t.banner.cards
+        : [];
 
     return titles.slice(0, 3).map((title, index) => ({
       title: splitTitleInTwoLines(title ?? ""),
@@ -69,14 +76,14 @@ export const Banner = memo(function Banner() {
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
-              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-black/20" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/20 via-black/30 to-black/20" />
             </div>
 
             <div className="absolute inset-0 flex flex-col">
               <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex-1">
                 <div className="relative max-w-7xl mx-auto h-full flex flex-col justify-end py-6 lg:py-8">
                   <motion.div
-                    className="absolute top-4 sm:top-6 left-1/2 -translate-x-1/2 transform text-7xl sm:text-8xl lg:text-9xl font-extralight text-white/20 leading-none text-center"
+                    className="absolute top-4 sm:top-6 left-1/2 -translate-x-1/2 transform text-7xl sm:text-8xl lg:text-9xl font-extralight text-white/50 leading-none text-center"
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
@@ -89,7 +96,7 @@ export const Banner = memo(function Banner() {
                   </motion.div>
 
                   <motion.h3
-                    className="text-2xl sm:text-3xl lg:text-4xl font-light text-white leading-tight text-center"
+                    className="font-[family-name:var(--font-dancing)] text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible text-center text-white"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}

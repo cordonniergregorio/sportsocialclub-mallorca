@@ -74,9 +74,11 @@ export interface Translations {
     titleHighlight: string;
     description: string;
     viewDetails: string;
+    equityBadge: string;
     investment: string;
     mainFeatures: string;
     businessModel: string;
+    contact: string;
     detailedInfo: string;
     accessInvestors: string;
     santaPonca: {
@@ -305,7 +307,7 @@ export const translations: Record<Language, Translations> = {
       titleHighlight: "sport",
       description:
         "Un espace où le sport, la gastronomie et la communauté se rencontrent pour créer des moments uniques",
-      cards: ["Social", "Prime", "Profit"],
+      cards: ["Valeur sociale", "Emplacement privilégié", "Rentabilité"],
     },
     concept: {
       title: "Le concept de",
@@ -341,14 +343,17 @@ export const translations: Record<Language, Translations> = {
       description:
         "Propositions complémentaires pour transformer l'offre sportive à Majorque",
       viewDetails: "Voir les détails du projet",
+      equityBadge: "Capital",
       investment: "Investissement estimé",
       mainFeatures: "Caractéristiques principales",
       businessModel: "Modèle d'affaires",
+      contact: "Contact",
       detailedInfo: "Pour des informations détaillées du projet",
       accessInvestors: "zone privée des investisseurs",
       santaPonca: {
         name: "Santa Ponça, Majorque",
         features: [
+          "Ticket minumum de 200.000€",
           "3 courts de padel couverts",
           "7 courts de tennis",
           "Restaurant avec salles de bain et espaces communs (300 m²)",
@@ -501,7 +506,7 @@ export const translations: Record<Language, Translations> = {
         ],
       },
       business: {
-        title: "Modèle d'Affaires",
+        title: "Modèle économique",
         items: [
           "Sponsors corporatifs (branding + avantages)",
           "Summer, premium, adults and kids camps",
@@ -636,7 +641,7 @@ export const translations: Record<Language, Translations> = {
       titleHighlight: "sport",
       description:
         "A space where sports, gastronomy and community come together to create unique moments",
-      cards: ["Social", "Prime", "Profit"],
+      cards: ["Social Value", "Prime Location", "Profit"],
     },
     concept: {
       title: "The concept of",
@@ -672,14 +677,17 @@ export const translations: Record<Language, Translations> = {
       description:
         "Complementary proposals to transform the sports offering in Mallorca",
       viewDetails: "View project details",
+      equityBadge: "Equity",
       investment: "Estimated investment",
       mainFeatures: "Main features",
       businessModel: "Business model",
+      contact: "Contact",
       detailedInfo: "For detailed project information",
       accessInvestors: "private investor area",
       santaPonca: {
         name: "Santa Ponça, Mallorca",
         features: [
+          "Minimum ticket of 200.000€",
           "3 covered padel courts",
           "7 tennis courts",
           "Restaurant with bathrooms and common areas (300 m²)",
@@ -967,7 +975,7 @@ export const translations: Record<Language, Translations> = {
       titleHighlight: "deporte",
       description:
         "Un espacio donde el deporte, la gastronomía y la comunidad se encuentran para crear momentos únicos",
-      cards: ["Social", "Prime", "Profit"],
+      cards: ["Valor social", "Ubicación privilegiada", "Rentabilidad"],
     },
     concept: {
       title: "El concepto de",
@@ -1003,14 +1011,17 @@ export const translations: Record<Language, Translations> = {
       description:
         "Propuestas complementarias para transformar la oferta deportiva en Mallorca",
       viewDetails: "Ver detalles del proyecto",
+      equityBadge: "Capital",
       investment: "Inversión estimada",
       mainFeatures: "Características principales",
       businessModel: "Modelo de negocio",
+      contact: "Contacto",
       detailedInfo: "Para información detallada del proyecto",
       accessInvestors: "área privada de inversores",
       santaPonca: {
         name: "Santa Ponça, Mallorca",
         features: [
+          "Ticket mínimo de 200.000€",
           "3 canchas de pádel techadas",
           "7 canchas de tenis",
           "Restaurante con baños y zonas comunes (300 m²)",

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Dancing_Script } from "next/font/google";
+import { Inter, Caveat } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 
@@ -8,7 +8,7 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const dancingScript = Dancing_Script({
+const dancingScript = Caveat({
   subsets: ["latin"],
   variable: "--font-dancing",
   weight: ["400", "500", "600", "700"],

@@ -26,7 +26,7 @@ interface InvestorSectionProps {
   title: string;
   icon: ReactNode;
   preview: ReactNode;
-  fullContent: ReactNode;
+  fullContent?: ReactNode | null;
   delay?: number;
   className?: string;
 }
@@ -35,7 +35,7 @@ function InvestorSection({
   title,
   icon,
   preview,
-  fullContent,
+  fullContent = null,
   delay = 0,
   className,
 }: InvestorSectionProps) {
@@ -63,25 +63,29 @@ function InvestorSection({
               <div className="p-2 bg-gray-50 rounded-lg">{icon}</div>
               <h3 className="text-xl font-bold text-gray-900">{title}</h3>
             </div>
-            <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-[#006F9D] transition-colors mt-1" />
+            {fullContent && (
+              <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-[#006F9D] transition-colors mt-1" />
+            )}
           </div>
           <div className="text-gray-600">{preview}</div>
         </motion.div>
       </SheetTrigger>
-      <SheetContent
-        side="bottom"
-        className="w-full max-h-[90vh] overflow-y-auto border-t-2 border-[#006F9D] px-4 sm:px-6 lg:px-8"
-      >
-        <div className="space-y-6 max-w-7xl mx-auto">
-          <SheetHeader>
-            <SheetTitle className="flex items-center gap-3 text-2xl font-bold text-gray-900 pb-4 border-b border-gray-200">
-              {icon}
-              {title}
-            </SheetTitle>
-          </SheetHeader>
-          <div>{fullContent}</div>
-        </div>
-      </SheetContent>
+      {fullContent && (
+        <SheetContent
+          side="bottom"
+          className="w-full max-h-[90vh] overflow-y-auto border-t-2 border-[#006F9D] px-4 sm:px-6 lg:px-8"
+        >
+          <div className="space-y-6 max-w-7xl mx-auto">
+            <SheetHeader>
+              <SheetTitle className="flex items-center gap-3 text-2xl font-bold text-gray-900 pb-4 border-b border-gray-200">
+                {icon}
+                {title}
+              </SheetTitle>
+            </SheetHeader>
+            {fullContent && <div>{fullContent}</div>}
+          </div>
+        </SheetContent>
+      )}
     </Sheet>
   );
 }
@@ -112,7 +116,7 @@ export function InvestorsContent() {
                 <p className="text-xs text-gray-500 font-light uppercase tracking-wider mb-1">
                   {t.investorsContent.financial.investment}
                 </p>
-                <p className="text-3xl font-bold text-[#006F9D]">1,25 M€</p>
+                <p className="text-3xl font-bold text-[#006F9D]">1,6 M€</p>
               </div>
               <div>
                 <p className="text-xs text-gray-500 font-light uppercase tracking-wider mb-1">
@@ -144,13 +148,13 @@ export function InvestorsContent() {
                   {t.investorsContent.financial.ebitda}
                 </p>
                 <p className="text-3xl font-bold text-gray-900">300k €</p>
+                <p className="text-xs text-gray-400 mt-1 font-light">
+                  {t.investorsContent.financial.concessionNote}
+                </p>
               </div>
               <div className="mt-6 pt-6 border-t border-gray-200">
-                <p className="text-xs text-gray-400 font-light">
+                <p className="text-xs text-gray-900 font-normal">
                   {t.investorsContent.financial.excelNote}
-                </p>
-                <p className="text-xs text-gray-400 font-light mt-1">
-                  {t.investorsContent.financial.concessionNote}
                 </p>
               </div>
             </div>
@@ -166,16 +170,20 @@ export function InvestorsContent() {
               <p className="text-sm text-gray-600 font-light line-clamp-2">
                 {t.investorsContent.value.p1}
               </p>
-              <p className="text-xs text-gray-400 mt-2 line-clamp-1">
+              <p className="text-xs text-gray-900 font-normal mt-2 line-clamp-1">
                 {t.investorsContent.value.p3}
               </p>
             </div>
           }
           fullContent={
             <div className="space-y-4 text-gray-600 font-light leading-relaxed text-sm">
-              <p>{t.investorsContent.value.p1}</p>
-              <p>{t.investorsContent.value.p2}</p>
               <p className="font-bold text-gray-900">
+                {t.investorsContent.value.p1}
+              </p>
+              <p className="font-normal text-gray-900">
+                {t.investorsContent.value.p2}
+              </p>
+              <p className="font-normal text-gray-900">
                 {t.investorsContent.value.p3}
               </p>
             </div>
@@ -188,12 +196,10 @@ export function InvestorsContent() {
           icon={<MapPin className="w-6 h-6 text-[#006F9D]" />}
           preview={
             <div className="mt-2">
-              <p className="text-4xl font-bold text-[#006F9D] mb-1">
-                {t.investorsContent.location.items.length}
+              <p className="text-lg font-semibold text-[#006F9D]">
+                Santa Ponça, Mallorca
               </p>
-              <p className="text-sm text-gray-600 font-light">
-                {t.investorsContent.location.title}
-              </p>
+             
             </div>
           }
           fullContent={
@@ -201,7 +207,7 @@ export function InvestorsContent() {
               {t.investorsContent.location.items.map((item, index) => (
                 <li key={index} className="flex items-start gap-3">
                   <span className="text-[#006F9D] mt-1.5">•</span>
-                  <span>{item}</span>
+                  <span className="font-normal text-gray-900">{item}</span>
                 </li>
               ))}
             </ul>
@@ -314,13 +320,15 @@ export function InvestorsContent() {
           title={t.investorsContent.opportunity.title}
           icon={<TrendingUp className="w-6 h-6 text-[#006F9D]" />}
           preview={
-            <div className="mt-2">
-              <p className="text-4xl font-bold text-[#006F9D] mb-1">
-                {t.investorsContent.opportunity.items.length}
-              </p>
-              <p className="text-sm text-gray-600 font-light">
-                {t.investorsContent.opportunity.title}
-              </p>
+            <div className="space-y-3 text-gray-600 font-light leading-relaxed text-sm">
+              {t.investorsContent.opportunity.items
+                .slice(0, 2)
+                .map((item, index) => (
+                  <p key={index} className="flex items-start gap-2">
+                    <span className="text-[#006F9D] mt-1">•</span>
+                    <span className="font-normal text-gray-900">{item}</span>
+                  </p>
+                ))}
             </div>
           }
           fullContent={
@@ -328,7 +336,7 @@ export function InvestorsContent() {
               {t.investorsContent.opportunity.items.map((item, index) => (
                 <p key={index} className="flex items-start gap-2">
                   <span className="text-[#006F9D] mt-1">•</span>
-                  <span>{item}</span>
+                  <span className="font-normal text-gray-900">{item}</span>
                 </p>
               ))}
             </div>
@@ -341,23 +349,15 @@ export function InvestorsContent() {
           icon={<DollarSign className="w-6 h-6 text-[#006F9D]" />}
           preview={
             <div className="mt-2">
-              <p className="text-4xl font-bold text-[#006F9D] mb-1">
-                {t.investorsContent.business.items.length}
-              </p>
-              <p className="text-sm text-gray-600 font-light">
-                {t.investorsContent.business.title}
-              </p>
+              <ul className="space-y-2.5 text-gray-600 font-light text-sm">
+                {t.investorsContent.business.items.map((item, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <span className="text-[#006F9D] mt-1.5">•</span>
+                    <span className="font-normal text-gray-900">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          }
-          fullContent={
-            <ul className="space-y-2.5 text-gray-600 font-light text-sm">
-              {t.investorsContent.business.items.map((item, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <span className="text-[#006F9D] mt-1.5">•</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
           }
           delay={0.7}
           className="md:col-span-2"
@@ -371,7 +371,7 @@ export function InvestorsContent() {
               <p className="text-sm text-gray-600 font-light">
                 {t.investorsContent.future.title}
               </p>
-              <p className="text-xs text-gray-400 mt-2">
+              <p className="text-xs text-gray-900 font-normal mt-2">
                 {t.investorsContent.future.items.length}{" "}
                 {t.investorsContent.future.title.toLowerCase()}
               </p>
@@ -383,7 +383,7 @@ export function InvestorsContent() {
                 {t.investorsContent.future.items.map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <span className="text-[#006F9D] mt-1.5">•</span>
-                    <span>{item}</span>
+                    <span className="font-normal text-gray-900">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -430,7 +430,9 @@ export function InvestorsContent() {
                     (item, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <span className="text-[#006F9D] mt-1.5">•</span>
-                        <span>{item}</span>
+                        <span className="font-normal text-gray-900">
+                          {item}
+                        </span>
                       </li>
                     )
                   )}
@@ -445,7 +447,9 @@ export function InvestorsContent() {
                     (item, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <span className="text-[#006F9D] mt-1.5">•</span>
-                        <span>{item}</span>
+                        <span className="font-normal text-gray-900">
+                          {item}
+                        </span>
                       </li>
                     )
                   )}
@@ -523,14 +527,6 @@ export function InvestorsContent() {
           title={t.investorsContent.exit.title}
           icon={<Target className="w-6 h-6 text-[#006F9D]" />}
           preview={
-            <div className="mt-2">
-              <p className="text-4xl font-bold text-[#006F9D] mb-1">2</p>
-              <p className="text-sm text-gray-600 font-light">
-                {t.investorsContent.exit.title}
-              </p>
-            </div>
-          }
-          fullContent={
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="border-l-4 border-[#006F9D] pl-5 py-3 bg-[#006F9D]/10 rounded-r-lg">
                 <p className="font-bold text-gray-900 mb-2">
@@ -550,6 +546,26 @@ export function InvestorsContent() {
               </div>
             </div>
           }
+          // fullContent={
+          //   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          //     <div className="border-l-4 border-[#006F9D] pl-5 py-3 bg-[#006F9D]/10 rounded-r-lg">
+          //       <p className="font-bold text-gray-900 mb-2">
+          //         {t.investorsContent.exit.option1.title}
+          //       </p>
+          //       <p className="text-gray-600 text-sm font-light leading-relaxed">
+          //         {t.investorsContent.exit.option1.description}
+          //       </p>
+          //     </div>
+          //     <div className="border-l-4 border-[#FF7E3B] pl-5 py-3 bg-[#FF7E3B]/10 rounded-r-lg">
+          //       <p className="font-bold text-gray-900 mb-2">
+          //         {t.investorsContent.exit.option2.title}
+          //       </p>
+          //       <p className="text-gray-600 text-sm font-light leading-relaxed">
+          //         {t.investorsContent.exit.option2.description}
+          //       </p>
+          //     </div>
+          //   </div>
+          // }
           delay={1.1}
           className="md:col-span-2"
         />

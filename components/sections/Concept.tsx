@@ -80,7 +80,7 @@ export const Concept = memo(function Concept() {
               return (
                 <motion.div
                   key={index}
-                  className="relative border-2 border-gray-200 rounded-xl p-6 bg-gradient-to-br from-white to-gray-50/50 transition-all duration-300 group"
+                  className="relative border-2 border-gray-200 rounded-xl p-6 bg-linear-to-br from-white to-gray-50/50 transition-all duration-300 group"
                   initial={{ opacity: 0.3, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-30px" }}
