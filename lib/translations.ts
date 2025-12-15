@@ -80,13 +80,11 @@ export interface Translations {
     accessInvestors: string;
     santaPonca: {
       name: string;
-      location: string;
       features: string[];
       businessModel: string[];
     };
     palmanova: {
       name: string;
-      location: string;
       features: string[];
       businessModel: string[];
     };
@@ -347,8 +345,7 @@ export const translations: Record<Language, Translations> = {
       detailedInfo: "Pour des informations détaillées du projet",
       accessInvestors: "zone privée des investisseurs",
       santaPonca: {
-        name: "Santa Ponça",
-        location: "Santa Ponça, Majorque",
+        name: "Santa Ponça, Majorque",
         features: [
           "3 courts de padel couverts",
           "7 courts de tennis",
@@ -364,19 +361,18 @@ export const translations: Record<Language, Translations> = {
         ],
       },
       palmanova: {
-        name: "Palmanova",
-        location: "Palmanova, Majorque",
+        name: "Palmanova, Majorque",
         features: [
           "8 courts de padel",
           "Restaurant",
           "Terrain de football 11",
-          "Installations modernes",
+          "Panneaux photovoltaïques",
         ],
         businessModel: [
           "Programmes pour touristes",
           "Location de courts",
           "École sportive",
-          "Restauration",
+          "Restauration et espaces communs (200m²)",
         ],
       },
     },
@@ -679,8 +675,7 @@ export const translations: Record<Language, Translations> = {
       detailedInfo: "For detailed project information",
       accessInvestors: "private investor area",
       santaPonca: {
-        name: "Santa Ponça",
-        location: "Santa Ponça, Mallorca",
+        name: "Santa Ponça, Mallorca",
         features: [
           "3 covered padel courts",
           "7 tennis courts",
@@ -696,19 +691,18 @@ export const translations: Record<Language, Translations> = {
         ],
       },
       palmanova: {
-        name: "Palmanova",
-        location: "Palmanova, Mallorca",
+        name: "Palmanova, Mallorca",
         features: [
           "8 padel courts",
           "Restaurant",
           "11-a-side football field",
-          "Modern facilities",
+          "Photovoltaic panels",
         ],
         businessModel: [
           "Programs for tourists",
           "Court rental",
           "Sports school",
-          "Restaurant",
+          "Restaurant and common areas (200m²)",
         ],
       },
     },
@@ -975,7 +969,7 @@ export const translations: Record<Language, Translations> = {
       title: "El concepto de",
       titleHighlight: "Club Social Deportivo",
       description:
-        "Ambos proyectos comparten una misma visión: crear clubes modernos, vibrantes y familiares, con espacios deportivos de primer nivel y un enfoque social para disfrutar todo el año.",
+        "Proyectos con una misma visión: crear clubes modernos, vibrantes y familiares, con espacios deportivos de primer nivel y un enfoque social para disfrutar todo el año.",
       cards: {
         families: {
           title: "Clubes familiares",
@@ -1011,8 +1005,7 @@ export const translations: Record<Language, Translations> = {
       detailedInfo: "Para información detallada del proyecto",
       accessInvestors: "área privada de inversores",
       santaPonca: {
-        name: "Santa Ponça",
-        location: "Santa Ponça, Mallorca",
+        name: "Santa Ponça, Mallorca",
         features: [
           "3 canchas de pádel techadas",
           "7 canchas de tenis",
@@ -1028,19 +1021,18 @@ export const translations: Record<Language, Translations> = {
         ],
       },
       palmanova: {
-        name: "Palmanova",
-        location: "Palmanova, Mallorca",
+        name: "Palmanova, Mallorca",
         features: [
           "8 canchas de pádel",
           "Restaurante",
           "Campo de fútbol 11",
-          "Instalaciones modernas",
+          "Paneles fotovoltaicos",
         ],
         businessModel: [
           "Programas para turistas",
           "Alquiler de pistas",
           "Escuela deportiva",
-          "Restauración",
+          "Restauración y zonas comunes (200m²)",
         ],
       },
     },

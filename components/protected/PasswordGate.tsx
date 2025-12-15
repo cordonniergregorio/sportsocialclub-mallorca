@@ -26,7 +26,10 @@ export function PasswordGate({ onUnlock }: PasswordGateProps) {
 
     setTimeout(() => {
       if (password === correctPassword) {
+        // Guardar timestamp de autenticación (15 minutos = 900000 ms)
+        const authTimestamp = Date.now();
         localStorage.setItem("investor_authenticated", "true");
+        localStorage.setItem("investor_auth_timestamp", authTimestamp.toString());
         onUnlock();
       } else {
         setError(true);

@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -17,7 +16,6 @@ import { useLanguage } from "@/context/LanguageContext";
 
 interface Project {
   name: string;
-  location: string;
   investment: string;
   features: string[];
   businessModel: string[];
@@ -67,9 +65,6 @@ function ProjectModal({
         <DialogTitle className="text-4xl font-light">
           {project.name}
         </DialogTitle>
-        <DialogDescription className="text-lg font-light text-gray-500">
-          {project.location}
-        </DialogDescription>
       </DialogHeader>
 
       <div className="space-y-8 mt-6">
@@ -143,16 +138,14 @@ export const Projects = memo(function Projects() {
     (): Project[] => [
       {
         name: t.projects.santaPonca.name,
-        location: t.projects.santaPonca.location,
-        investment: "€1.6MM",
+        investment: "1.6MM",
         features: t.projects.santaPonca.features,
         businessModel: t.projects.santaPonca.businessModel,
         image: "/images/4.jpg",
       },
       {
         name: t.projects.palmanova.name,
-        location: t.projects.palmanova.location,
-        investment: "€1.25MM",
+        investment: "1.25MM",
         features: t.projects.palmanova.features,
         businessModel: t.projects.palmanova.businessModel,
         image: "/images/1.jpg",
@@ -250,9 +243,6 @@ export const Projects = memo(function Projects() {
                     <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
                       {project.name}
                     </h3>
-                    <p className="text-lg text-gray-600 font-light">
-                      {project.location}
-                    </p>
                   </div>
 
                   <div className="space-y-3">

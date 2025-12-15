@@ -84,7 +84,7 @@ export const Header = memo(function Header() {
                 src={
                   isScrolled
                     ? "/images/logoPrimary.png"
-                    : "/images/logoPrimary.png"
+                    : "/images/logoonly.png"
                 }
                 alt={t.clubName}
                 width={190}
@@ -176,7 +176,7 @@ export const Header = memo(function Header() {
                 variant="outline"
                 className={`hidden md:flex rounded-full transition-all duration-300 ${
                   isScrolled
-                    ? "border-gray-300 bg-transparent hover:bg-gray-50 text-gray-900 shadow-sm"
+                    ? "border-gray-300 bg-transparent  text-gray-900 shadow-sm"
                     : "border-white/60 bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:border-white shadow-lg"
                 }`}
               >

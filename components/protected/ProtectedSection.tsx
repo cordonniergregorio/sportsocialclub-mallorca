@@ -8,18 +8,45 @@ interface ProtectedSectionProps {
   title?: ReactNode;
 }
 
+const checkAuthExpiration = (): boolean => {
+  if (typeof window === "undefined") return false;
+
+  const authStatus = localStorage.getItem("investor_authenticated");
+  const authTimestamp = localStorage.getItem("investor_auth_timestamp");
+
+  if (authStatus === "true" && authTimestamp) {
+    const now = Date.now();
+    const timestamp = parseInt(authTimestamp, 10);
+    const fifteenMinutes = 15 * 60 * 1000;
+
+    if (now - timestamp < fifteenMinutes) {
+      return true;
+    } else {
+      localStorage.removeItem("investor_authenticated");
+      localStorage.removeItem("investor_auth_timestamp");
+      return false;
+    }
+  }
+  return false;
+};
+
 export function ProtectedSection({ children, title }: ProtectedSectionProps) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(() =>
+    checkAuthExpiration()
+  );
+  const [isLoading] = useState(false);
 
   useEffect(() => {
-    // Verificar si ya está autenticado en localStorage
-    const authStatus = localStorage.getItem("investor_authenticated");
-    if (authStatus === "true") {
-      setIsAuthenticated(true);
-    }
-    setIsLoading(false);
-  }, []);
+    const interval = setInterval(() => {
+      const stillValid = checkAuthExpiration();
+      if (!stillValid && isAuthenticated) {
+        setIsAuthenticated(false);
+        window.location.reload();
+      }
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, [isAuthenticated]);
 
   const handleUnlock = () => {
     setIsAuthenticated(true);
@@ -35,10 +62,8 @@ export function ProtectedSection({ children, title }: ProtectedSectionProps) {
 
   return (
     <div className="relative">
-      {/* Mostrar siempre el título */}
       {title}
 
-      {/* Mostrar contenido solo si está autenticado */}
       {isAuthenticated ? (
         <div className="mt-12">{children}</div>
       ) : (

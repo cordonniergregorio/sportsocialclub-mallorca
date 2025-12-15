@@ -3,19 +3,30 @@
 import { useRef, useState, useEffect, memo } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
+
+const heroImages = ["/images/4.jpg", "/images/5.jpg", "/images/6.jpg"];
 
 export const Hero = memo(function Hero() {
   const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const fullText = t.hero.title;
   const secondLine = t.hero.titleHighlight;
   const [displayedText, setDisplayedText] = useState("");
   const [displayedSecondLine, setDisplayedSecondLine] = useState("");
   const [showCursor, setShowCursor] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -77,22 +88,81 @@ export const Hero = memo(function Hero() {
     }
   };
 
+  const goToNext = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+  };
+
+  const goToPrevious = () => {
+    setCurrentImageIndex(
+      (prev) => (prev - 1 + heroImages.length) % heroImages.length
+    );
+  };
+
+  const goToImage = (index: number) => {
+    setCurrentImageIndex(index);
+  };
+
   return (
     <section
       ref={containerRef}
       className="relative py-20 lg:py-30 overflow-hidden"
     >
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/3.jpg"
-          alt={t.clubName}
-          fill
-          className="object-cover"
-          priority
-          quality={85}
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-black/30"></div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentImageIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={heroImages[currentImageIndex]}
+              alt={`${t.clubName} - ${currentImageIndex + 1}`}
+              fill
+              className="object-cover"
+              priority={currentImageIndex === 0}
+              quality={85}
+              sizes="100vw"
+            />
+          </motion.div>
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-black/50"></div>
+      </div>
+
+      {/* Navegación del carrusel */}
+      <div className="absolute inset-0 z-5 flex items-center justify-between px-4 pointer-events-none">
+        <button
+          onClick={goToPrevious}
+          className="pointer-events-auto p-2 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm transition-all duration-300"
+          aria-label="Imagen anterior"
+        >
+          <ChevronLeft className="w-6 h-6 text-white" />
+        </button>
+        <button
+          onClick={goToNext}
+          className="pointer-events-auto p-2 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm transition-all duration-300"
+          aria-label="Siguiente imagen"
+        >
+          <ChevronRight className="w-6 h-6 text-white" />
+        </button>
+      </div>
+
+      {/* Indicadores */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 flex gap-2">
+        {heroImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToImage(index)}
+            className={`transition-all duration-300 rounded-full ${
+              index === currentImageIndex
+                ? "w-8 h-2 bg-white"
+                : "w-2 h-2 bg-white/50 hover:bg-white/75"
+            }`}
+            aria-label={`Ir a imagen ${index + 1}`}
+          />
+        ))}
       </div>
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">

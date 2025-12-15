@@ -22,18 +22,6 @@ export const Investment = memo(function Investment() {
         title: t.investment.points.complementary.title,
         description: t.investment.points.complementary.description,
       },
-      {
-        title: t.investment.points.competition.title,
-        description: t.investment.points.competition.description,
-      },
-      {
-        title: t.investment.points.sustainability.title,
-        description: t.investment.points.sustainability.description,
-      },
-      {
-        title: t.investment.points.return.title,
-        description: t.investment.points.return.description,
-      },
     ],
     [t]
   );
@@ -101,7 +89,7 @@ export const Investment = memo(function Investment() {
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {investmentPoints.map((point, index) => (
               <motion.div
                 key={index}
