@@ -26,7 +26,9 @@ export function PasswordGate({ onUnlock }: PasswordGateProps) {
 
     setTimeout(() => {
       if (password === correctPassword) {
+        const authTimestamp = Date.now();
         localStorage.setItem("investor_authenticated", "true");
+        localStorage.setItem("investor_auth_timestamp", authTimestamp.toString());
         onUnlock();
       } else {
         setError(true);
@@ -45,7 +47,7 @@ export function PasswordGate({ onUnlock }: PasswordGateProps) {
         transition={{ duration: 0.6 }}
       >
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-4">
+          <div className="space-y-4 bg-gray-100 rounded-lg p-4">
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="p-2 bg-gray-100 rounded-lg">
                 <Lock className="w-5 h-5 text-gray-600" />

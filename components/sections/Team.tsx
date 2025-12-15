@@ -17,21 +17,21 @@ export const Team = memo(function Team() {
         name: t.team.members.antonio.name,
         role: t.team.members.antonio.role,
         description: t.team.members.antonio.description,
-        image: "/images/2.jpg",
+        image: "/images/anto.jpeg",
       },
       {
         id: 2,
         name: t.team.members.gregorio.name,
         role: t.team.members.gregorio.role,
         description: t.team.members.gregorio.description,
-        image: "/images/2.jpg",
+        image: "/images/grego3.jpg",
       },
       {
         id: 3,
         name: t.team.members.irene.name,
         role: t.team.members.irene.role,
         description: t.team.members.irene.description,
-        image: "/images/2.jpg",
+        image: "/images/plano.png",
       },
     ],
     [t]
@@ -53,7 +53,7 @@ export const Team = memo(function Team() {
   };
 
   return (
-    <section id="equipo" className="py-20 bg-white overflow-visible">
+    <section id="equipo" className="pt-20 pb-5 bg-white overflow-visible">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
         <div className="max-w-6xl mx-auto overflow-visible">
           <motion.div
