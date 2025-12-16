@@ -33,7 +33,10 @@ function ProjectCardDialog({ project }: { project: Project }) {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-          <Button className="w-full rounded-lg bg-black text-white hover:bg-gray-900 transition-all font-light px-6 py-3">
+          <Button
+            aria-label={t.projects.viewDetails}
+            className="w-full rounded-lg bg-black text-white hover:bg-gray-900 transition-all font-light px-6 py-3"
+          >
             {t.projects.viewDetails}
           </Button>
         </motion.div>
@@ -100,7 +103,7 @@ function ProjectModal({
             {project.features.map((feature, index) => (
               <li key={index} className="flex items-start gap-3">
                 <span className="text-gray-400 mt-1">—</span>
-                <span>{feature}</span>
+                <span className="text-gray-800">{feature}</span>
               </li>
             ))}
           </ul>
@@ -114,7 +117,7 @@ function ProjectModal({
             {project.businessModel.map((item, index) => (
               <li key={index} className="flex items-start gap-3">
                 <span className="text-gray-400 mt-1">—</span>
-                <span>{item}</span>
+                <span className="text-gray-800">{item}</span>
               </li>
             ))}
           </ul>
@@ -208,8 +211,7 @@ export const Projects = memo(function Projects() {
                 }}
                 whileHover={{
                   borderColor: "#006F9D",
-                  boxShadow:
-                    "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 111, 157, 0.1)",
+                  scale: 1.01,
                 }}
                 style={{
                   backfaceVisibility: "hidden",

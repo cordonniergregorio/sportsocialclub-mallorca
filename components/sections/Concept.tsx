@@ -91,8 +91,7 @@ export const Concept = memo(function Concept() {
                   }}
                   whileHover={{
                     borderColor: "#006F9D",
-                    boxShadow:
-                      "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 111, 157, 0.1)",
+                    scale: 1.01,
                   }}
                   data-framer-motion
                 >
@@ -115,7 +114,7 @@ export const Concept = memo(function Concept() {
                     {card.title}
                   </h3>
                   <p className="text-base text-gray-600 font-light leading-relaxed">
-                    {card.description}
+                    <span className="text-gray-800">{card.description}</span>
                   </p>
                 </motion.div>
               );

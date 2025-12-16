@@ -67,7 +67,7 @@ export const Banner = memo(function Banner() {
               delay: index * 0.15,
               ease: "easeOut",
             }}
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ scale: 1.01 }}
             data-framer-motion
           >
             <div className="absolute inset-0">
