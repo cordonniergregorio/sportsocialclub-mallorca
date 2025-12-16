@@ -33,6 +33,9 @@ export function InvestorsGate() {
           {t.investorsGate.titleHighlight}
         </span>
       </h2>
+      <p className="text-lg sm:text-xl text-gray-600 font-light max-w-2xl mx-auto">
+        {t.investorsGate.description}
+      </p>
     </motion.div>
   );
 
