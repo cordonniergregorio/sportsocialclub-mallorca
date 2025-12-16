@@ -1,6 +1,13 @@
 "use client";
 
-import { createContext, useContext, useState, useMemo, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useMemo,
+  ReactNode,
+  useEffect,
+} from "react";
 import { Language, translations } from "@/lib/translations";
 
 interface LanguageContextType {
@@ -14,22 +21,17 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
 );
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  // Función de inicialización lazy que solo se ejecuta en el cliente
-  const getInitialLanguage = (): Language => {
-    if (typeof window === "undefined") return "fr";
-    const savedLanguage = localStorage.getItem("language") as Language;
-    if (
-      savedLanguage &&
-      (savedLanguage === "fr" ||
-        savedLanguage === "en" ||
-        savedLanguage === "es")
-    ) {
-      return savedLanguage;
-    }
-    return "fr";
-  };
+  // Usamos valor estable en SSR para evitar mismatches; luego sincronizamos en efecto.
+  const [language, setLanguageState] = useState<Language>("fr");
 
-  const [language, setLanguageState] = useState<Language>(getInitialLanguage);
+  // Sincroniza idioma desde localStorage solo en cliente
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const savedLanguage = localStorage.getItem("language") as Language;
+    if (savedLanguage === "fr" || savedLanguage === "en" || savedLanguage === "es") {
+      setLanguageState(savedLanguage);
+    }
+  }, []);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);

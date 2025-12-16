@@ -16,7 +16,7 @@ export function InvestorsGate() {
       transition={{ duration: 0.8, ease: "easeOut" }}
       data-framer-motion
     >
-      <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight overflow-visible pr-4">
+      <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight overflow-visible pr-4">
         {t.investorsGate.title}
         <br />
         <span
@@ -33,6 +33,9 @@ export function InvestorsGate() {
           {t.investorsGate.titleHighlight}
         </span>
       </h2>
+      <p className="text-lg sm:text-xl text-gray-600 font-light max-w-2xl mx-auto mb-6">
+        {t.investorsGate.description}
+      </p>
     </motion.div>
   );
 

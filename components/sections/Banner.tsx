@@ -10,6 +10,8 @@ const bannerImages = [
   "/images/mallorca1.jpg",
   "/images/mallorca3.webp",
 ];
+const bannerBlur =
+  "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUQEhMVFRUVFRUVFRUQFRUVFRUVFRUWFhUVFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDg0OGhAQGy0lICYtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAJ8BPgMBIgACEQEDEQH/xAAWAAEBAQAAAAAAAAAAAAAAAAAGBf/EAB8QAAICAgIDAQAAAAAAAAAAAAECAxEAEiExQVFhof/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAFREBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhEDEQA/AO4gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/Z";
 
 type BannerPoint = {
   title: [string, string];
@@ -57,7 +59,7 @@ export const Banner = memo(function Banner() {
           <motion.div
             key={index}
             className="relative h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden group"
-            initial={{ opacity: 0.4, y: 30 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{
@@ -65,7 +67,7 @@ export const Banner = memo(function Banner() {
               delay: index * 0.15,
               ease: "easeOut",
             }}
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ scale: 1.01 }}
             data-framer-motion
           >
             <div className="absolute inset-0">
@@ -75,6 +77,9 @@ export const Banner = memo(function Banner() {
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                 sizes="(max-width: 768px) 100vw, 33vw"
+                quality={70}
+                placeholder="blur"
+                blurDataURL={bannerBlur}
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/20 via-black/30 to-black/20" />
             </div>
@@ -84,7 +89,7 @@ export const Banner = memo(function Banner() {
                 <div className="relative max-w-7xl mx-auto h-full flex flex-col justify-end py-6 lg:py-8">
                   <motion.div
                     className="absolute top-4 sm:top-6 left-1/2 -translate-x-1/2 transform text-7xl sm:text-8xl lg:text-9xl font-extralight text-white/50 leading-none text-center"
-                    initial={{ opacity: 0, scale: 0.8 }}
+                    initial={false}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{
@@ -96,8 +101,8 @@ export const Banner = memo(function Banner() {
                   </motion.div>
 
                   <motion.h3
-                    className="font-[family-name:var(--font-dancing)] text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible text-center text-white"
-                    initial={{ opacity: 0, y: 20 }}
+                    className="font-(family-name:--font-dancing) text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible text-center text-white"
+                    initial={false}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{

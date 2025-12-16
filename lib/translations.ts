@@ -353,7 +353,6 @@ export const translations: Record<Language, Translations> = {
       santaPonca: {
         name: "Santa Ponça, Majorque",
         features: [
-          "Ticket minumum de 200.000€",
           "3 courts de padel couverts",
           "7 courts de tennis",
           "Restaurant avec salles de bain et espaces communs (300 m²)",
@@ -361,6 +360,7 @@ export const translations: Record<Language, Translations> = {
           "Améliorations potentielles : plus de courts de padel, piscine, salle de sport",
         ],
         businessModel: [
+          "Ticket minimum de 200.000€",
           "Sponsors corporatifs (branding + avantages)",
           "Camps d'été, premium, adultes et enfants",
           "Location à l'heure (courts et cours particuliers)",
@@ -424,7 +424,8 @@ export const translations: Record<Language, Translations> = {
     investorsGate: {
       title: "Zone Privée",
       titleHighlight: "des Investisseurs",
-      description: "Informations confidentielles du projet Santa Ponça",
+      description:
+        "Informations exclusives pour les investisseurs du projet Santa Ponça",
     },
     passwordGate: {
       title: "Accès investisseurs",
@@ -687,7 +688,6 @@ export const translations: Record<Language, Translations> = {
       santaPonca: {
         name: "Santa Ponça, Mallorca",
         features: [
-          "Minimum ticket of 200.000€",
           "3 covered padel courts",
           "7 tennis courts",
           "Restaurant with bathrooms and common areas (300 m²)",
@@ -695,6 +695,7 @@ export const translations: Record<Language, Translations> = {
           "Potential improvements: more padel courts, pool, gym",
         ],
         businessModel: [
+          "Minimum ticket of 200.000€",
           "Corporate sponsors (branding + benefits)",
           "Summer, premium, adults and kids camps",
           "Hourly rental (courts and private lessons)",
@@ -758,7 +759,8 @@ export const translations: Record<Language, Translations> = {
     investorsGate: {
       title: "Private Area",
       titleHighlight: "for Investors",
-      description: "Confidential information of the Santa Ponça project",
+      description:
+        "Exclusive information for investors of the Santa Ponça project",
     },
     passwordGate: {
       title: "Investor access",
@@ -1021,7 +1023,6 @@ export const translations: Record<Language, Translations> = {
       santaPonca: {
         name: "Santa Ponça, Mallorca",
         features: [
-          "Ticket mínimo de 200.000€",
           "3 canchas de pádel techadas",
           "7 canchas de tenis",
           "Restaurante con baños y zonas comunes (300 m²)",
@@ -1029,6 +1030,7 @@ export const translations: Record<Language, Translations> = {
           "Mejoras potenciales: más canchas de pádel, piscina, gimnasio",
         ],
         businessModel: [
+          "Ticket mínimo de 200.000€",
           "Sponsors corporativos (branding + beneficios)",
           "Summer, premium, adults and kids camps",
           "Alquiler por horas (pistas y clases particulares)",
@@ -1092,7 +1094,8 @@ export const translations: Record<Language, Translations> = {
     investorsGate: {
       title: "Área Privada",
       titleHighlight: "de Inversores",
-      description: "Información confidencial del proyecto Santa Ponça",
+      description:
+        "Información exclusiva para inversores del proyecto Santa Ponça",
     },
     passwordGate: {
       title: "Acceso para inversores",

@@ -22,6 +22,9 @@ interface Project {
   image: string;
 }
 
+const blurPlaceholder =
+  "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUQEhMVFRUVFRUVFRUQFRUVFRUVFRUWFhUVFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDg0OGhAQGy0lICYtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAJ8BPgMBIgACEQEDEQH/xAAWAAEBAQAAAAAAAAAAAAAAAAAGBf/EAB8QAAICAgIDAQAAAAAAAAAAAAECAxEAEiExQVFhof/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAFREBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhEDEQA/AO4gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/Z";
+
 function ProjectCardDialog({ project }: { project: Project }) {
   const { t } = useLanguage();
   const [open, setOpen] = useState(false);
@@ -30,7 +33,10 @@ function ProjectCardDialog({ project }: { project: Project }) {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-          <Button className="w-full rounded-lg bg-black text-white hover:bg-gray-900 transition-all font-light px-6 py-3">
+          <Button
+            aria-label={t.projects.viewDetails}
+            className="w-full rounded-lg bg-black text-white hover:bg-gray-900 transition-all font-light px-6 py-3"
+          >
             {t.projects.viewDetails}
           </Button>
         </motion.div>
@@ -75,6 +81,10 @@ function ProjectModal({
             alt={project.name}
             fill
             className="object-cover"
+            quality={70}
+            placeholder="blur"
+            blurDataURL={blurPlaceholder}
+            sizes="100vw"
           />
         </div>
 
@@ -93,7 +103,7 @@ function ProjectModal({
             {project.features.map((feature, index) => (
               <li key={index} className="flex items-start gap-3">
                 <span className="text-gray-400 mt-1">—</span>
-                <span>{feature}</span>
+                <span className="text-gray-800">{feature}</span>
               </li>
             ))}
           </ul>
@@ -107,7 +117,7 @@ function ProjectModal({
             {project.businessModel.map((item, index) => (
               <li key={index} className="flex items-start gap-3">
                 <span className="text-gray-400 mt-1">—</span>
-                <span>{item}</span>
+                <span className="text-gray-800">{item}</span>
               </li>
             ))}
           </ul>
@@ -158,7 +168,7 @@ export const Projects = memo(function Projects() {
         <div className="max-w-7xl mx-auto overflow-visible">
           <motion.div
             className="mb-16 overflow-visible"
-            initial={{ opacity: 0.3, y: 20 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -168,7 +178,7 @@ export const Projects = memo(function Projects() {
               {t.projects.title}
               <br />
               <span
-                className="font-[family-name:var(--font-dancing)] text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible gradient-text-animated-colorful"
+                className="font-(family-name:--font-dancing) text-5xl sm:text-6xl lg:text-7xl inline-block overflow-visible gradient-text-animated-colorful"
                 style={{
                   lineHeight: "1.4",
                   paddingTop: "0.3em",
@@ -191,7 +201,7 @@ export const Projects = memo(function Projects() {
               <motion.div
                 key={index}
                 className="group border-2 border-gray-200 rounded-xl overflow-hidden bg-white transition-all duration-300"
-                initial={{ opacity: 0.4, y: 10 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{
@@ -201,8 +211,7 @@ export const Projects = memo(function Projects() {
                 }}
                 whileHover={{
                   borderColor: "#006F9D",
-                  boxShadow:
-                    "0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 111, 157, 0.1)",
+                  scale: 1.01,
                 }}
                 style={{
                   backfaceVisibility: "hidden",
@@ -220,11 +229,15 @@ export const Projects = memo(function Projects() {
                       alt={project.name}
                       fill
                       className="object-cover"
-                      loading="lazy"
+                      loading={index === 0 ? "eager" : "lazy"}
+                      quality={70}
+                      placeholder="blur"
+                      blurDataURL={blurPlaceholder}
                       sizes="(max-width: 1024px) 100vw, 50vw"
+                      priority={index === 0}
                     />
                   </motion.div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                  <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent"></div>
 
                   <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
                     <span className="text-xs font-semibold uppercase tracking-wide text-[#006F9D]">
