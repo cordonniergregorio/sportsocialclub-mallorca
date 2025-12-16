@@ -346,7 +346,7 @@ export const translations: Record<Language, Translations> = {
       equityBadge: "Capital",
       investment: "Investissement estimé",
       mainFeatures: "Caractéristiques principales",
-      businessModel: "Modèle d'affaires",
+      businessModel: "Modèle économique",
       contact: "Contact",
       detailedInfo: "Pour des informations détaillées du projet",
       accessInvestors: "zone privée des investisseurs",
@@ -448,7 +448,7 @@ export const translations: Record<Language, Translations> = {
       value: {
         title: "Proposition de Valeur",
         p1: "Club social sportif intégral de haute qualité dans la meilleure zone de Majorque.",
-        p2: "Transformation d'un club municipal en un centre sportif-social de premier niveau avec plusieurs lignes d'affaires rentables.",
+        p2: "Transformation d'un club municipal en un centre sportif-social de premier niveau avec plusieurs lignes rentables.",
         p3: "Concession publique à 31 ans → accès à un actif stratégique sans nécessité d'achat de terrain.",
       },
       location: {

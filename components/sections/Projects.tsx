@@ -20,6 +20,7 @@ interface Project {
   features: string[];
   businessModel: string[];
   image: string;
+  mapLink?: string;
 }
 
 const blurPlaceholder =
@@ -150,6 +151,7 @@ export const Projects = memo(function Projects() {
         features: t.projects.santaPonca.features,
         businessModel: t.projects.santaPonca.businessModel,
         image: "/images/6.jpg",
+        mapLink: "https://maps.app.goo.gl/sgWN15qUkXrfjw6y8",
       },
       {
         name: t.projects.palmanova.name,
@@ -258,7 +260,18 @@ export const Projects = memo(function Projects() {
                 <div className="p-8 space-y-6">
                   <div>
                     <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
-                      {project.name}
+                      {project.mapLink ? (
+                        <a
+                          href={project.mapLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline decoration-2 underline-offset-4"
+                        >
+                          {project.name}
+                        </a>
+                      ) : (
+                        project.name
+                      )}
                     </h3>
                   </div>
 
