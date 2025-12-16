@@ -8,6 +8,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 
 const heroImages = ["/images/4.jpg", "/images/5.jpg", "/images/6.jpg"];
+const heroBlurDataURL =
+  "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhIVFhUVFRUVFRUVFRUVFRUVFRUWFhUVFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDg0OGxAQGy0lICYtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAJ8BPgMBIgACEQEDEQH/xAAWAAEBAQAAAAAAAAAAAAAAAAAGBf/EAB8QAAICAgIDAQAAAAAAAAAAAAECAxEABAUSITFBgf/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAFREBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhEDEQA/AO4gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/Z";
 
 export const Hero = memo(function Hero() {
   const { t } = useLanguage();
@@ -111,7 +113,7 @@ export const Hero = memo(function Hero() {
         <AnimatePresence initial={false} mode="sync">
           <motion.div
             key={currentImageIndex}
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1 }}
@@ -123,8 +125,10 @@ export const Hero = memo(function Hero() {
               fill
               className="object-cover"
               priority={currentImageIndex === 0}
-              quality={85}
+              quality={70}
               sizes="100vw"
+              placeholder="blur"
+              blurDataURL={heroBlurDataURL}
             />
           </motion.div>
         </AnimatePresence>
@@ -170,7 +174,7 @@ export const Hero = memo(function Hero() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start min-h-[500px]">
             <motion.div
               className="space-y-6"
-              initial={{ opacity: 0.3, x: -20 }}
+              initial={false}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
               data-framer-motion
@@ -181,7 +185,7 @@ export const Hero = memo(function Hero() {
                   <>
                     {" "}
                     <motion.span
-                      className="font-bold text-6xl sm:text-7xl lg:text-8xl font-[family-name:var(--font-dancing)] text-white/95 inline"
+                      className="font-bold text-6xl sm:text-7xl lg:text-8xl font-(family-name:--font-dancing) text-white/95 inline"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.5, delay: 0.2 }}
@@ -209,7 +213,7 @@ export const Hero = memo(function Hero() {
 
               <motion.p
                 className="text-lg lg:text-2xl text-white/90 leading-relaxed font-light max-w-lg"
-                initial={{ opacity: 0.3, y: 15 }}
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                 data-framer-motion
@@ -220,14 +224,14 @@ export const Hero = memo(function Hero() {
 
             <motion.div
               className="flex flex-col justify-end text-right self-end space-y-6"
-              initial={{ opacity: 0.3, x: 20 }}
+              initial={false}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
               data-framer-motion
             >
               <motion.p
                 className="text-lg lg:text-2xl text-white/90 leading-relaxed font-light"
-                initial={{ opacity: 0.3, y: 15 }}
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
                 data-framer-motion
@@ -236,7 +240,7 @@ export const Hero = memo(function Hero() {
               </motion.p>
 
               <motion.div
-                initial={{ opacity: 0.3, y: 15 }}
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
                 className="flex justify-end"
